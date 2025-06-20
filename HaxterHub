@@ -308,220 +308,216 @@ local AllBool = false
             end
         end
     end
-local board = workspace["Tic Tac Toe"]
-local MoveOptions = {"First", "Second"}
-local MoveOption = "Second"
+local boardRoot = workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("Game") and workspace.Map.Game:FindFirstChild("Model") and workspace.Map.Game.Model:FindFirstChild("Slot")
+if not boardRoot then warn("Board not found") return end
 
-local AIPlayer, Opponent = nil, nil
+local runService = game:GetService("RunService")
+local MoveOptions = {"Green", "Blue"} 
+local MoveOption = "Green" 
 local TTTDelay = 0
 getgenv().TTTAutoPlay = false
 
-local winIndicators = {
-	board.Cat,
-	board.Win1, board.Win2, board.Win3,
-	board.Win4, board.Win5, board.Win6,
-	board.Win7, board.Win8,
-}
+local GREEN = Color3.fromRGB(76, 184, 93)
+local BLUE = Color3.fromRGB(43, 133, 141)
+local myColor, opponentColor
 
-local function getBoardState()
-	local state = {}
-	for i = 1, 9 do
-		local xPart = board["X" .. i]
-		local oPart = board["O" .. i]
-		if xPart.Transparency < 1 then
-			state[i] = "X"
-		elseif oPart.Transparency < 1 then
-			state[i] = "O"
-		else
-			state[i] = nil
-		end
-	end
-	return state
-end
 
-local function printBoard(state)
-	for i = 1, 9, 3 do
-		print(state[i] or "-", state[i+1] or "-", state[i+2] or "-")
+local cellOrder = {}
+for r = 1, 3 do
+	for c = 1, 3 do
+		table.insert(cellOrder, {row = r, col = c})
 	end
 end
 
-local function clickCell(index)
-	local detector = board["Detector" .. index]
-	local state = getBoardState()
-	if not state[index] and detector and detector:FindFirstChild("ClickDetector") then
-		fireclickdetector(detector.ClickDetector)
-		print("AI clicked cell:", index)
-	end
+local function getCircle(r, c)
+	local slot = boardRoot:FindFirstChild("Slot0" .. r)
+	return slot and slot:FindFirstChild("Circle0" .. c)
 end
 
-local function isBoardEmpty(state)
-	for i = 1, 9 do
-		if state[i] then return false end
-	end
-	return true
+local function getClickDetector(r, c)
+	local slot = boardRoot:FindFirstChild("Slot0" .. r)
+	local part = slot and slot:FindFirstChild("Slot0" .. c)
+	return part and part:FindFirstChild("ClickDetector")
 end
 
-local function checkWin(state, player)
-	local wins = {
-		{1,2,3}, {4,5,6}, {7,8,9},
-		{1,4,7}, {2,5,8}, {3,6,9},
-		{1,5,9}, {3,5,7},
-	}
-	for _, combo in ipairs(wins) do
-		if state[combo[1]] == player and state[combo[2]] == player and state[combo[3]] == player then
+local function isRoundOver()
+	for _, pos in ipairs(cellOrder) do
+		local circle = getCircle(pos.row, pos.col)
+		if circle and circle.Material == Enum.Material.Neon then
 			return true
 		end
 	end
 	return false
 end
 
-local function isDraw(state)
-	for i = 1, 9 do
-		if not state[i] then
+local function allCirclesFilled()
+	for _, pos in ipairs(cellOrder) do
+		local circle = getCircle(pos.row, pos.col)
+		if circle and circle.Transparency == 1 then
 			return false
 		end
 	end
-	return not checkWin(state, "X") and not checkWin(state, "O")
+	return true
 end
 
-local function getAvailableMoves(state)
-	local moves = {}
-	for i = 1, 9 do
-		if not state[i] then
-			table.insert(moves, i)
+local function waitUntilNoNeon()
+	while isRoundOver() do task.wait(0.2) end
+end
+
+local function getBoardState()
+	local state = {}
+	for i, pos in ipairs(cellOrder) do
+		local circle = getCircle(pos.row, pos.col)
+		if circle and circle.Transparency == 0 then
+			state[i] = {
+				color = circle.Color,
+				material = circle.Material,
+				row = pos.row,
+				col = pos.col,
+			}
 		end
 	end
-	return moves
+	return state
 end
 
-local function minimax(state, depth, isMaximizing)
-	if checkWin(state, AIPlayer) then return 10 - depth end
-	if checkWin(state, Opponent) then return depth - 10 end
-	if #getAvailableMoves(state) == 0 then return 0 end
-
-	local bestScore = isMaximizing and -math.huge or math.huge
-	for _, move in ipairs(getAvailableMoves(state)) do
-		state[move] = isMaximizing and AIPlayer or Opponent
-		local score = minimax(state, depth + 1, not isMaximizing)
-		state[move] = nil
-		bestScore = isMaximizing and math.max(bestScore, score) or math.min(bestScore, score)
+local function isMyTurn()
+	local myMoves, theirMoves = 0, 0
+	for _, cell in pairs(getBoardState()) do
+		if cell.color == myColor then myMoves += 1
+		elseif cell.color == opponentColor then theirMoves += 1 end
 	end
-	return bestScore
+	if myColor == GREEN then
+		return myMoves == theirMoves
+	else
+		return myMoves < theirMoves
+	end
 end
 
-local function getBestMove(state)
-	local bestScore = -math.huge
-	local bestMove
-	for _, move in ipairs(getAvailableMoves(state)) do
-		state[move] = AIPlayer
-		local score = minimax(state, 0, false)
-		state[move] = nil
-		if score > bestScore then
-			bestScore = score
-			bestMove = move
+local function indexToPosition(index)
+	if not index then return nil, nil end
+	local row = math.floor((index - 1) / 3) + 1
+	local col = ((index - 1) % 3) + 1
+	return row, col
+end
+
+local function makeMove(row, col)
+	local detector = getClickDetector(row, col)
+	local circle = getCircle(row, col)
+	if detector and circle and circle.Transparency == 1 then
+		fireclickdetector(detector)
+		print("Clicked:", row, col)
+		local timeout = 3
+		local start = tick()
+		repeat task.wait(0.1)
+		until circle.Transparency == 0 or tick() - start > timeout
+	end
+end
+
+
+local function getSimpleBoard()
+	local board = {}
+	for i = 1, 9 do board[i] = nil end
+	for i, pos in ipairs(cellOrder) do
+		local circle = getCircle(pos.row, pos.col)
+		if circle and circle.Transparency == 0 then
+			if circle.Color == myColor then board[i] = "AI"
+			elseif circle.Color == opponentColor then board[i] = "Opponent" end
 		end
 	end
-	return bestMove
+	return board
 end
 
-local function determineAIIdentityFromClick(index)
-	local before = {}
-	for i = 1, 9 do
-		before["X" .. i] = board["X" .. i].Transparency
-		before["O" .. i] = board["O" .. i].Transparency
-	end
-
-	clickCell(index)
-
-	local changedPart = nil
-	while not changedPart do
-		task.wait(0.05)
-		for i = 1, 9 do
-			if before["X" .. i] == 1 and board["X" .. i].Transparency < 1 then
-				changedPart = "X"
-				break
-			elseif before["O" .. i] == 1 and board["O" .. i].Transparency < 1 then
-				changedPart = "O"
-				break
-			end
+local function checkWin(board, who)
+	local winCombos = {
+		{1,2,3},{4,5,6},{7,8,9},
+		{1,4,7},{2,5,8},{3,6,9},
+		{1,5,9},{3,5,7},
+	}
+	for _, combo in ipairs(winCombos) do
+		if board[combo[1]] == who and board[combo[2]] == who and board[combo[3]] == who then
+			return true
 		end
-	end
-
-	AIPlayer = changedPart
-	Opponent = (AIPlayer == "X") and "O" or "X"
-	print("AI is playing as", AIPlayer)
-end
-
-local function anyWinIndicatorVisible()
-	for _, part in ipairs(winIndicators) do
-		if part.Transparency == 0 then return true end
 	end
 	return false
 end
 
-local function waitUntilAllIndicatorsInvisible()
-	while anyWinIndicatorVisible() do
-		task.wait(0.25)
+local function isDraw(board)
+	for i = 1, 9 do if not board[i] then return false end end
+	return true
+end
+
+local function minimax(board, depth, isMax)
+	if checkWin(board, "AI") then return 10 - depth end
+	if checkWin(board, "Opponent") then return depth - 10 end
+	if isDraw(board) then return 0 end
+
+	local bestScore = isMax and -math.huge or math.huge
+	for i = 1, 9 do
+		if not board[i] then
+			board[i] = isMax and "AI" or "Opponent"
+			local score = minimax(board, depth + 1, not isMax)
+			board[i] = nil
+			bestScore = isMax and math.max(bestScore, score) or math.min(bestScore, score)
+		end
+	end
+	return bestScore
+end
+
+local function getBestMove()
+	local board = getSimpleBoard()
+	local bestScore = -math.huge
+	local move = nil
+	for i = 1, 9 do
+		if not board[i] then
+			board[i] = "AI"
+			local score = minimax(board, 0, false)
+			board[i] = nil
+			if score > bestScore then
+				bestScore = score
+				move = i
+			end
+		end
+	end
+	if move then
+		return indexToPosition(move)
+	else
+		return nil, nil
 	end
 end
 
+
 task.spawn(function()
 	while true do
-		task.wait(0.25)
+		task.wait(0.2)
 		if not getgenv().TTTAutoPlay then continue end
 
-		if anyWinIndicatorVisible() then
-			print("Game over detected.")
-			local finalState = getBoardState()
-			printBoard(finalState)
-
-			if checkWin(finalState, AIPlayer) then
-				print("AI won!")
-			elseif checkWin(finalState, Opponent) then
-				print("AI lost.")
-			elseif isDraw(finalState) then
-				print("It's a draw!")
-			end
-
-			AIPlayer, Opponent = nil, nil
-			waitUntilAllIndicatorsInvisible()
-			repeat task.wait(0.25) until isBoardEmpty(getBoardState())
-			print("Board cleared.")
+		
+		if isRoundOver() then
+			print("Round finished, waiting...")
+			waitUntilNoNeon()
+			repeat task.wait(0.2) until #getBoardState() == 0
+			print("Board reset.")
+		elseif allCirclesFilled() then
+			print("Draw detected.")
+			repeat task.wait(0.2) until isRoundOver() or #getBoardState() == 0
 		end
 
-		local state = getBoardState()
-		local empty = isBoardEmpty(state)
-
-		if empty and not AIPlayer then
-			if MoveOption == "First" then
-				print("AI making first move...")
-				for _, idx in ipairs({5, 1, 3, 7, 9}) do
-					if not state[idx] then
-						determineAIIdentityFromClick(idx)
-						break
-					end
-				end
-			elseif MoveOption == "Second" then
-				print("Waiting for human to go first...")
-				repeat task.wait(0.25) state = getBoardState() until not isBoardEmpty(state)
-				for i = 1, 9 do
-					if state[i] then
-						Opponent = state[i]
-						AIPlayer = (Opponent == "X") and "O" or "X"
-						break
-					end
-				end
-				print("AI is playing as", AIPlayer)
-				task.wait(TTTDelay)
-				local move = getBestMove(state)
-				if move then clickCell(move) end
+		if not myColor then
+			if MoveOption == "Green" then
+				myColor = GREEN
+				opponentColor = BLUE
+			else
+				myColor = BLUE
+				opponentColor = GREEN
 			end
-		elseif AIPlayer then
-			local availableBefore = #getAvailableMoves(state)
-			repeat task.wait(0.25) state = getBoardState() until #getAvailableMoves(state) < availableBefore
+		end
+
+		if isMyTurn() then
 			task.wait(TTTDelay)
-			local move = getBestMove(state)
-			if move then clickCell(move) end
+			local row, col = getBestMove()
+			if row and col then
+				makeMove(row, col)
+			end
 		end
 	end
 end)
@@ -532,18 +528,14 @@ main:CreateToggle("Tic Tac Toe Auto Play", function(val)
 end)
 
 main:CreateBox("Move Delay (seconds)", "string", function(val)
-	local n = tonumber(val)
-	if n and n >= 0 then
-		TTTDelay = n
-	end
+	local num = tonumber(val)
+	if num and num >= 0 then TTTDelay = num end
 end)
 
 main:CreateDropdown("Move Option", MoveOptions, function(option)
 	MoveOption = option
-	AIPlayer, Opponent = nil, nil 
+	myColor, opponentColor = nil, nil
 end)
-
-
 
     main:CreateToggle("Avoid Tool Abusers (Lag)", function(AvoidLagTools)
         getgenv().AvoidLagToolss = AvoidLagTools
@@ -825,7 +817,7 @@ end)
         local numPartsZ = math.ceil(PlatFormSize / maxSize)
         local partSizeZ = PlatFormSize / numPartsZ
         
-        local baseplate = workspace.Baseplate
+        local baseplate = workspace.Map.Important.Baseplate.Baseplate
         if baseplate then
             baseplate.Size = Vector3.new(partSizeX, baseplate.Size.Y, partSizeZ) 
     
@@ -987,7 +979,11 @@ end)
             return v3_net + realPartVelocity * v3_808
         end
         
-        game.ReplicatedStorage:WaitForChild("RagdollEvent"):FireServer()
+        local args = {
+        	"Ball"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Ragdoll"):FireServer(unpack(args))
+
         
         local simradius = "shp" 
         local simrad = 0 
@@ -1191,7 +1187,7 @@ end)
         end
         
         if antirespawn then
-            respawnrequest()
+            
         end
         
         if method == 0 then
@@ -1458,10 +1454,10 @@ end)
             end
             if model and hum0 and (hum0.Health > 0) then
                 model:BreakJoints()
-                hum0.Health = 0
+                hum0.Health = 100
             end
             if antirespawn then
-                respawnrequest()
+                
             end
         end)
         
@@ -1710,7 +1706,9 @@ plr.Character.Humanoid:ChangeState(3)
         if R15reanimated then
             Message("Error!", "Deactivate R15", 5)
         else
-            game.ReplicatedStorage:WaitForChild("UnragdollEvent"):FireServer()
+            game:GetService("ReplicatedStorage"):WaitForChild("Unragdoll"):FireServer()
+
+
             plr.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
 
         end
@@ -1763,7 +1761,11 @@ plr.Character.Humanoid:ChangeState(3)
     
     SimulateJump()
     task.wait()
-        ragdoll_event:FireServer()
+        local args = {
+    	"Ball"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Ragdoll"):FireServer(unpack(args))
+
 
     
     renderConnection = run_service.Heartbeat:Connect(function()
@@ -6323,7 +6325,11 @@ Reanimate:CreateButton("R6 Reanimate", function(state)
                 end
                 return v3_net + realPartVelocity * v3_808
             end
-            game.ReplicatedStorage:WaitForChild("RagdollEvent"):FireServer()
+            local args = {
+	"Ball"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Ragdoll"):FireServer(unpack(args))
+
     
             
             local simradius = "shp" 
@@ -6566,7 +6572,7 @@ Reanimate:CreateButton("R6 Reanimate", function(state)
             end
     
             if antirespawn then
-                respawnrequest()
+                
             end
     
             if method == 0 then
@@ -6824,7 +6830,7 @@ Reanimate:CreateButton("R6 Reanimate", function(state)
                         end
                     end)
                 else
-                    respawnrequest()
+                    
                 end
             end
     
@@ -6841,7 +6847,7 @@ Reanimate:CreateButton("R6 Reanimate", function(state)
                     hum0.Health = 0
                 end
                 if antirespawn then
-                    respawnrequest()
+                    
                 end
             end)
             sg:SetCore("ResetButtonCallback", rb)
@@ -12140,6 +12146,15 @@ function sendChat(msg)
 end
 Universal:CreateBox("Chat Input", "string", function(boxs)
     sendChat(boxs)
+end)
+
+main:CreateBox("School Text Bypasser", "string", function(message)
+    local conversionTable = letters
+    converted = filter(message, conversionTable, prefixCharacter, suffixCharacter)
+    local args = {
+    	converted
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("EventTextSchool"):FireServer(unpack(args))
 end)
 
 Universal:CreateBox("Swastika in chat", "string", function(boxs)
