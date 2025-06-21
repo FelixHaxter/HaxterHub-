@@ -667,7 +667,7 @@ main:CreateToggle("Tic Tac Toe Auto Play", function(val)
 	getgenv().TTTAutoPlay = val
 end)
 
-main:CreateSlider("Platform Size", 0, 10, 0.6, function(val)
+main:CreateSlider("Next Move Delay", 0, 10, 0.6, function(val)
 	local num = tonumber(val)
 	if num and num >= 0 then TTTDelay = num end
 end)
