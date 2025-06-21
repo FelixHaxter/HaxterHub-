@@ -471,7 +471,7 @@ function makeMove(row, col)
 		fireclickdetector(detector)
 		print("Clicked:", row, col)
 
-		-- Wait for confirmation that the move was placed
+		
 		local timeout = 3
 		local start = tick()
 		repeat task.wait(0.1)
@@ -552,7 +552,7 @@ function getBestMove()
 end
 
 
--- GREEN AI LOOP
+
 task.spawn(function()
 	while true do
 		task.wait(0.2)
@@ -597,7 +597,7 @@ task.spawn(function()
 	end
 end)
 
--- BLUE AI LOOP
+
 task.spawn(function()
 	while true do
 		task.wait(0.2)
@@ -625,7 +625,7 @@ task.spawn(function()
         	end
         end
         if not greenMoved then
-        	continue -- wait for green to make first move
+        	continue 
         end
 
 		if isMyTurn() then
@@ -961,7 +961,7 @@ if map then
         if baseplate then
             Environment:CreateSlider("Platform Size", 402, 50000, 402, function(PlatFormSize)
 
-                -- Destroy existing PlatformParts
+                
                 for _, part in pairs(workspace:GetChildren()) do
                     if part:IsA("Part") and part.Name == "PlatformPart" then
                         part:Destroy()
@@ -974,7 +974,7 @@ if map then
                 local numPartsZ = math.ceil(PlatFormSize / maxSize)
                 local partSizeZ = PlatFormSize / numPartsZ
 
-                -- Set the size of the baseplate if it exists
+                
                 baseplate.Size = Vector3.new(partSizeX, baseplate.Size.Y, partSizeZ)
 
                 for i = 0, numPartsX - 1 do
@@ -985,7 +985,7 @@ if map then
                         part.Name = "PlatformPart"
                         part.Anchored = true
 
-                        -- Clone textures from the baseplate
+                        
                         for _, texture in pairs(baseplate:GetChildren()) do
                             if texture:IsA("Texture") then
                                 local textureClone = texture:Clone()
@@ -998,7 +998,7 @@ if map then
                     end
                 end
 
-                -- Handle "Conveyer" parts
+                
                 for _, conveyor in pairs(workspace:GetChildren()) do
                     if conveyor:IsA("Part") and conveyor.Name == "Conveyer" then
                         local size = conveyor.Size
