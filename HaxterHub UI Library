@@ -1590,31 +1590,34 @@ function vermlibbb:CreateSlider(name, min, max, initialValue, callback)
 		currentValue = value
 		callback(value)
 	end
-
 	
 	local dragging = false
+	local inputObject = nil
 
 	SliderBack.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
+			inputObject = input -- track the actual input
 			local position = math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1)
 			setSliderValue(math.floor(position * (max - min) + min))
-		end
-	end)
-	
-	UIS.InputChanged:Connect(function(input)
-		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-			local position = math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1)
-			setSliderValue(math.floor(position * (max - min) + min))
-		end
-	end)
-	
-	UIS.InputEnded:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = false
 		end
 	end)
 
+	UIS.InputChanged:Connect(function(input)
+		if dragging and input == inputObject then -- ensure it's the same touch/mouse input
+			local position = math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1)
+			setSliderValue(math.floor(position * (max - min) + min))
+		end
+	end)
+
+	UIS.InputEnded:Connect(function(input)
+		if input == inputObject then
+			dragging = false
+			inputObject = nil
+		end
+	end)
+
+	
 	local originalInitialValue = initialValue
 	SliderButton.MouseButton1Click:Connect(function()
 		setSliderValue(originalInitialValue)
