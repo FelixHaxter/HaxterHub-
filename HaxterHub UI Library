@@ -1567,11 +1567,10 @@ function vermlibbb:CreateSlider(name, min, max, initialValue, callback)
 
 	RefreshImage.Position = UDim2.new(0, 410, 0, 5)
 	RefreshImage.Size = UDim2.new(0, 17, 0, 17)
+	RefreshImage.Image = "http://www.roblox.com/asset/?id=114684549131119"
 	RefreshImage.Parent = Container2
 	RefreshImage.BackgroundTransparency = 1
-	spawn(function()
-	RefreshImage.Image = "http://www.roblox.com/asset/?id=114684549131119"
-	end)
+
 	callback(initialValue)
 
 	
@@ -1585,14 +1584,12 @@ function vermlibbb:CreateSlider(name, min, max, initialValue, callback)
 	
 	local function setSliderValue(value)
 		value = math.clamp(value, min, max)
-		value = math.round(value * 10) / 10 
 		local percent = (value - min) / (max - min)
 		tweenSliderVisualTo(percent)
-		SliderValue.Text = string.format("%.1f", value) 
+		SliderValue.Text = tostring(value)
 		currentValue = value
 		callback(value)
 	end
-
 
 	
 	local dragging = false
@@ -1601,19 +1598,16 @@ function vermlibbb:CreateSlider(name, min, max, initialValue, callback)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			dragging = true
 			local position = math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1)
-			local rawValue = position * (max - min) + min
-			setSliderValue(math.round(rawValue * 10) / 10)
+			setSliderValue(math.floor(position * (max - min) + min))
 		end
 	end)
 
 	UIS.InputChanged:Connect(function(input)
 		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
 			local position = math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1)
-			local rawValue = position * (max - min) + min
-			setSliderValue(math.round(rawValue * 10) / 10)
+			setSliderValue(math.floor(position * (max - min) + min))
 		end
 	end)
-
 
 	UIS.InputEnded:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -1653,10 +1647,9 @@ function vermlibbb:CreateSlider(name, min, max, initialValue, callback)
 	UIS.InputChanged:Connect(function(input)
 		if hovering and input.UserInputType == Enum.UserInputType.MouseWheel then
 			local delta = input.Position.Z > 0 and 1 or -1
-			setSliderValue(currentValue + (delta * 0.1))
+			setSliderValue(currentValue + delta)
 		end
 	end)
-
 
 	
 	return {
