@@ -16,49 +16,62 @@ end
 
 if game.PlaceId == 2413927524 then 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/The%20Rake",true))()
-elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 then 
+elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId == 17473325951 then 
+repeat
+    task.wait()
+until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health > 0
 
+VirtualUser = game:GetService('VirtualUser')
+	
+	game:GetService('Players').LocalPlayer.Idled:Connect(function()
+	    VirtualUser:CaptureController()
+	    VirtualUser:ClickButton2(Vector2.new())
+	end)
 
-if game.PlaceId == 6884319169 or game.PlaceId == 15546218972 then
-    success, vermLib = pcall(loadstring(game:HttpGet("https://gist.githubusercontent.com/FelixHaxter/67d24f0b38785de7e89aa1dc4b5aefeb/raw/fd11c1d5640c6906fdcf13b8a957e3462b1ee1ef/asdsad")))
+if game:GetService("CoreGui"):FindFirstChild("HaxterHub V6") then
+    return
+end
+
+if game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId == 17473325951 then
+    success, vermLib = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-/refs/heads/main/HaxterHub%20UI%20Library")))
     if not success then
         return
     end
-     window = vermLib:CreateWindow()
-     main = window:CreateTab("main", "Main", "") 
-     Player = window:CreateTab("Player", "LocalPlayer", "")
-     Reanimate = window:CreateTab("Reanimate", "Reanimate", "")
-     Visuals = window:CreateTab("Visuals", "Visuals", "")
-     Environment = window:CreateTab("Environment", "Environment", "")
-     Animations = window:CreateTab("Animations", "Animations", "") 
-     Target = window:CreateTab("Target", "Target", "")
-     Universal = window:CreateTab("Universal", "Universal", "")
-     Server = window:CreateTab("Server", "Server", "")
-     Credits = window:CreateTab("Credits", "Credits", "")
-     UserInputService = game:GetService("UserInputService")
+    window = vermLib:CreateWindow()
+    main = window:CreateTab("main", "Main", "") 
+    Player = window:CreateTab("Player", "LocalPlayer", "")
+    Reanimate = window:CreateTab("Reanimate", "Reanimate", "")
+    Visuals = window:CreateTab("Visuals", "Visuals", "")
+    Environment = window:CreateTab("Environment", "Environment", "")
+    Animations = window:CreateTab("Animations", "Animations", "") 
+    Target = window:CreateTab("Target", "Target", "")
+    Universal = window:CreateTab("Universal", "Universal", "")
+    Server = window:CreateTab("Server", "Server", "")
+    Credits = window:CreateTab("Credits", "Credits", "")
+    UserInputService = game:GetService("UserInputService")
     UserInputService = cloneref(game:GetService("UserInputService"))
-     Players = game:GetService("Players")
-     RunService = game:GetService("RunService")
-     plr = Players.LocalPlayer
-     workspace = game.Workspace
-     mouse = plr:GetMouse()
-     flying = false
-     ctrl = {f = 0, b = 0, l = 0, r = 0}
-     currentAnim = nil
+    Players = game:GetService("Players")
+    RunService = game:GetService("RunService")
+    plr = Players.LocalPlayer
+    workspace = game.Workspace
+    mouse = plr:GetMouse()
+    flying = false
+    ctrl = {f = 0, b = 0, l = 0, r = 0}
+    currentAnim = nil
     plr.CameraMaxZoomDistance = 800000
-     ScreenGui = Instance.new("ScreenGui", game.CoreGui)
-     uis, mode = game:GetService("UserInputService"), ""
-     R15reanimated = false 
-     R6reanimated = false 
-     EmotePlayingR15 = false
-     euler, sin, sine, abs, clamp = CFrame.fromEulerAnglesXYZ, math.sin, 0, math.abs, math.clamp
-     CachedKeyframes = {}
-     LoadingKeyFrames = {}
-     mouse = plr:GetMouse()
-     FlySpeed = 30  
-     velocityHandlerName = "VelocityHandler"
-     gyroHandlerName = "GyroHandler"
-     cf = CFrame.new
+    ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+    uis, mode = game:GetService("UserInputService"), ""
+    R15reanimated = false 
+    R6reanimated = false 
+    EmotePlayingR15 = false
+    euler, sin, sine, abs, clamp = CFrame.fromEulerAnglesXYZ, math.sin, 0, math.abs, math.clamp
+    CachedKeyframes = {}
+    LoadingKeyFrames = {}
+    mouse = plr:GetMouse()
+    FlySpeed = 30  
+    velocityHandlerName = "VelocityHandler"
+    gyroHandlerName = "GyroHandler"
+    cf = CFrame.new
 
      function cfMul(a, b)
         return a * b
@@ -905,8 +918,6 @@ end
     local tpwalking = false 
     local teleportWalkValue = 1 
     local CurrentTeleportWalk = 0 
-    
-    local plr = game.Players.LocalPlayer
     
     function startTeleportWalking()
         tpwalking = true
@@ -5189,7 +5200,6 @@ local BuiltInAnimationsR15 = {
     ["Seeme2"] = 12441535402,
     ["stat start"] = 7307462517,
     ["Jake Dance"] = 17757445368,
-    ["KillNew"] = 12474655235,
     ["923"] = 10326613141,
     ["102Test"] = 11641870089,
     ["Midnight Moves"] = 8506314456,
@@ -6235,7 +6245,7 @@ local BuiltInAnimationsR15 = {
     ["all red"] = 133962666627854,
     ["Criminals"] = 113683695043810,
     ["Anxiety"] = 140558354276617,
-    ["Runaway"] = 106149765679643,
+    ["runaway"] = 12474655235,
     ["Assumptions"] = 74103868889013,
     ["Passo Bem Solto"] = 125411988166075,
     ["Image"] = 85082532048824,
@@ -12687,7 +12697,6 @@ local CurseWords = {
 "hard core",
 "hardcore",
 "hentai",
-"sybau",
 "homoerotic",
 "honkey",
 "hooker",
@@ -12899,6 +12908,7 @@ local CurseWords = {
 "vulva",
 "wank",
 "wetback",
+"finger",
 "wet dream",
 "white power",
 "whore",
@@ -13012,8 +13022,46 @@ end)
     end)
 
     Universal:CreateButton("Clear Chat", function(OPENS) 
-    sendChat("\u{001E}" .. string.rep("\u{000D}", 100) .. ".")
+        sendChat("\u{001E}" .. string.rep("\u{000D}", 100) .. ".")
     end)
+
+local VoiceChatService = game:GetService("VoiceChatService")
+local VoiceChatInternal = cloneref(game:GetService("VoiceChatInternal"))
+
+local autoJoinEnabled = true
+local onVoiceModerated 
+
+
+local function setupAutoJoin()
+    if autoJoinEnabled and (not onVoiceModerated or not onVoiceModerated.Connected) then
+        onVoiceModerated = VoiceChatInternal.LocalPlayerModerated:Connect(function()
+            task.wait(1)
+            VoiceChatService:JoinVoice()
+        end)
+    end
+end
+
+
+local function stopAutoJoin()
+    if onVoiceModerated and onVoiceModerated.Connected then
+        onVoiceModerated:Disconnect()
+    end
+end
+
+
+setupAutoJoin()
+
+
+Universal:CreateToggle("Disable Auto Join Voice Chat", function(state)
+    autoJoinEnabled = not state 
+
+    if autoJoinEnabled then
+        setupAutoJoin()
+    else
+        stopAutoJoin()
+    end
+end)
+
 
     Universal:CreateButton("Join Voice Chat", function()
         game:GetService("VoiceChatService"):joinVoice()
@@ -13839,7 +13887,6 @@ Target:CreateToggle("Enable Orbit", function(state)
 	end
 
 	if state then
-		local plr = game:GetService("Players").LocalPlayer
 		Character = plr.Character or plr.CharacterAdded:Wait()
 		HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 
@@ -14819,7 +14866,6 @@ spawn(function()
         wait(10)
     end
 end)
-    
 elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/Neighbors",true))()
 elseif game.PlaceId == 189707 then 
@@ -14833,7 +14879,7 @@ elseif game.PlaceId == 142823291 then
 elseif game.PlaceId == 8310127828 then 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/The%20Cabin%20Roleplay",true))()
 elseif game.PlaceId == 18249583849 then 
-    success, vermLib = pcall(loadstring(game:HttpGet("https://gist.githubusercontent.com/FelixHaxter/67d24f0b38785de7e89aa1dc4b5aefeb/raw/fd11c1d5640c6906fdcf13b8a957e3462b1ee1ef/asdsad")))
+    success, vermLib = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-/refs/heads/main/HaxterHub%20UI%20Library")))
     if not success then
         warn("Failed to load vermLib: " .. tostring(vermLib))
         return
@@ -21265,7 +21311,7 @@ elseif game.PlaceId == 111294513233843 then
 elseif game.PlaceId == 91692552632068 or game.PlaceId == 17590362521 or game.PlaceId == 17707569217 or game.PlaceId == 83091000527113 then 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/Spelling%20Bee",true))()
 else
-        local success, vermLib = pcall(loadstring(game:HttpGet("https://gist.githubusercontent.com/FelixHaxter/bbfe698c7a9242880161fd72b408c771/raw/917766518f0bb78a95f7d8ac9b6df3954785cde9/new%2520ui")))
+        local success, vermLib = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-/refs/heads/main/HaxterHub%20UI%20Library")))
         if not success then
             warn("Failed to load vermLib: " .. tostring(vermLib))
             return
