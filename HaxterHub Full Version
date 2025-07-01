@@ -17,7 +17,7 @@ end
 if game.PlaceId == 2413927524 then 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/The%20Rake",true))()
 elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId == 17473325951 then 
-repeat
+    repeat
     task.wait()
 until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health > 0
 
@@ -1239,49 +1239,68 @@ end
         end)
     end
 
+    local UserInputService = game:GetService("UserInputService")
+
+    local currentDevice = UserInputService.TouchEnabled and "Mobile" or "PC"
+
+    UserInputService.LastInputTypeChanged:Connect(function(inputType)
+        if inputType == Enum.UserInputType.Touch then
+            currentDevice = "Mobile"
+        elseif inputType == Enum.UserInputType.Keyboard or inputType == Enum.UserInputType.Gamepad1 then
+            currentDevice = "PC"
+        end
+    end)
+
+    local KeyDownFunction, KeyUpFunction
+
     Player:CreateToggle("Fly", function(EnableFly)
         if EnableFly then
-            if not IsOnMobile then
-                flying = true
-                local KeyDownFunction, KeyUpFunction
-    
+            flying = true
+
+            local function setupPCControls()
                 KeyDownFunction = mouse.KeyDown:Connect(function(key)
                     if flying then
-                        if key:lower() == "w" then
+                        local k = key:lower()
+                        if k == "w" then
                             ctrl.f = 1
-                            PlayAnim(10714177846, 4.65, 0) 
-                        elseif key:lower() == "s" then
+                            PlayAnim(10714177846, 4.65, 0)
+                        elseif k == "s" then
                             ctrl.b = -1
-                            PlayAnim(10147823318, 4.11, 0) 
-                        elseif key:lower() == "a" then
+                            PlayAnim(10147823318, 4.11, 0)
+                        elseif k == "a" then
                             ctrl.l = -1
-                            PlayAnim(10147823318, 3.55, 0) 
-                        elseif key:lower() == "d" then
+                            PlayAnim(10147823318, 3.55, 0)
+                        elseif k == "d" then
                             ctrl.r = 1
-                            PlayAnim(10147823318, 4.81, 0) 
+                            PlayAnim(10147823318, 4.81, 0)
                         end
                     end
                 end)
-    
+
                 KeyUpFunction = mouse.KeyUp:Connect(function(key)
                     if flying then
-                        if key:lower() == "w" then
+                        local k = key:lower()
+                        if k == "w" then
                             ctrl.f = 0
-                        elseif key:lower() == "s" then
+                        elseif k == "s" then
                             ctrl.b = 0
-                        elseif key:lower() == "a" then
+                        elseif k == "a" then
                             ctrl.l = 0
-                        elseif key:lower() == "d" then
+                        elseif k == "d" then
                             ctrl.r = 0
                         end
-                        StopAllAnims() 
+                        StopAllAnims()
                         if ctrl.f + ctrl.b + ctrl.l + ctrl.r == 0 then
-                            PlayAnim(10714347256, 4, 0) 
+                            PlayAnim(10714347256, 4, 0)
                         end
                     end
                 end)
-    
+
                 Fly()
+            end
+
+            if currentDevice == "PC" then
+                setupPCControls()
             else
                 mobilefly(plr)
             end
@@ -1290,8 +1309,8 @@ end
             unmobilefly(plr)
             if KeyDownFunction then KeyDownFunction:Disconnect() end
             if KeyUpFunction then KeyUpFunction:Disconnect() end
-            StopAllAnims() 
-            ctrl = {f = 0, b = 0, l = 0, r = 0} 
+            StopAllAnims()
+            ctrl = {f = 0, b = 0, l = 0, r = 0}
         end
     end)
     
