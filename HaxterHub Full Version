@@ -32,6 +32,7 @@ if game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId == 
     UserInputService = game:GetService("UserInputService")
     UserInputService = cloneref(game:GetService("UserInputService"))
     Players = game:GetService("Players")
+    IsOnMobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform())
     RunService = game:GetService("RunService")
     plr = Players.LocalPlayer
     workspace = game.Workspace
@@ -1220,99 +1221,60 @@ end
         end)
     end
 
-    local UserInputService = game:GetService("UserInputService")
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local mouse = player:GetMouse()
+    Player:CreateToggle("Fly", function(EnableFly)
+        if EnableFly then
+            if not IsOnMobile then
+                flying = true
+                local KeyDownFunction, KeyUpFunction
     
-    local flying = false
-    local ctrl = {f = 0, b = 0, l = 0, r = 0}
+                KeyDownFunction = mouse.KeyDown:Connect(function(key)
+                    if flying then
+                        if key:lower() == "w" then
+                            ctrl.f = 1
+                            PlayAnim(10714177846, 4.65, 0) 
+                        elseif key:lower() == "s" then
+                            ctrl.b = -1
+                            PlayAnim(10147823318, 4.11, 0) 
+                        elseif key:lower() == "a" then
+                            ctrl.l = -1
+                            PlayAnim(10147823318, 3.55, 0) 
+                        elseif key:lower() == "d" then
+                            ctrl.r = 1
+                            PlayAnim(10147823318, 4.81, 0) 
+                        end
+                    end
+                end)
     
-    local KeyDownFunction, KeyUpFunction
-    local currentMode = nil
+                KeyUpFunction = mouse.KeyUp:Connect(function(key)
+                    if flying then
+                        if key:lower() == "w" then
+                            ctrl.f = 0
+                        elseif key:lower() == "s" then
+                            ctrl.b = 0
+                        elseif key:lower() == "a" then
+                            ctrl.l = 0
+                        elseif key:lower() == "d" then
+                            ctrl.r = 0
+                        end
+                        StopAllAnims() 
+                        if ctrl.f + ctrl.b + ctrl.l + ctrl.r == 0 then
+                            PlayAnim(10714347256, 4, 0) 
+                        end
+                    end
+                end)
     
-    local function stopPCFly()
-    	if KeyDownFunction then KeyDownFunction:Disconnect() end
-    	if KeyUpFunction then KeyUpFunction:Disconnect() end
-    	StopAllAnims()
-    end
-    
-    local function stopMobileFly()
-    	unmobilefly(player)
-    end
-    
-    local function switchToPCFly()
-    	if currentMode == "PC" then return end
-    	currentMode = "PC"
-    	stopMobileFly()
-    
-    	print("✈️ Switched to PC Fly")
-    	KeyDownFunction = mouse.KeyDown:Connect(function(key)
-    		if not flying then return end
-    		local k = key:lower()
-    		if k == "w" then
-    			ctrl.f = 1
-    			PlayAnim(10714177846, 4.65, 0)
-    		elseif k == "s" then
-    			ctrl.b = -1
-    			PlayAnim(10147823318, 4.11, 0)
-    		elseif k == "a" then
-    			ctrl.l = -1
-    			PlayAnim(10147823318, 3.55, 0)
-    		elseif k == "d" then
-    			ctrl.r = 1
-    			PlayAnim(10147823318, 4.81, 0)
-    		end
-    	end)
-    
-    	KeyUpFunction = mouse.KeyUp:Connect(function(key)
-    		if not flying then return end
-    		local k = key:lower()
-    		if k == "w" then ctrl.f = 0
-    		elseif k == "s" then ctrl.b = 0
-    		elseif k == "a" then ctrl.l = 0
-    		elseif k == "d" then ctrl.r = 0 end
-        
-    		StopAllAnims()
-    		if ctrl.f + ctrl.b + ctrl.l + ctrl.r == 0 then
-    			PlayAnim(10714347256, 4, 0)
-    		end
-    	end)
-    
-    	Fly()
-    end
-    
-    local function switchToMobileFly()
-    	if currentMode == "Mobile" then return end
-    	currentMode = "Mobile"
-    	stopPCFly()
-    
-    	print("📱 Switched to Mobile Fly")
-    	mobilefly(player)
-    end
-    
-    UserInputService.InputBegan:Connect(function(input, gameProcessed)
-    	if not flying then return end
-    	if input.UserInputType == Enum.UserInputType.Keyboard then
-    		switchToPCFly()
-    	elseif input.UserInputType == Enum.UserInputType.Touch then
-    		switchToMobileFly()
-    	end
-    end)
-    
-    Player:CreateToggle("Fly", function(state)
-    	flying = state
-    
-    	if state then
-    		if UserInputService.TouchEnabled then
-    			switchToMobileFly()
-    		else
-    			switchToPCFly()
-    		end
-    	else
-    		stopPCFly()
-    		stopMobileFly()
-    	end
+                Fly()
+            else
+                mobilefly(plr)
+            end
+        else
+            flying = false
+            unmobilefly(plr)
+            if KeyDownFunction then KeyDownFunction:Disconnect() end
+            if KeyUpFunction then KeyUpFunction:Disconnect() end
+            StopAllAnims() 
+            ctrl = {f = 0, b = 0, l = 0, r = 0} 
+        end
     end)
     
     Player:CreateSlider("Fly Speed", 0, 500, 30, function(FlyingValueSpeed)
