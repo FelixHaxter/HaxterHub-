@@ -2638,18 +2638,19 @@
         plr.Character.Animate.Enabled = true
     end)
 local EmotesTable = {}
-if isfile("EmoteToPlay.lua") then
+if isfile("EmotesToPlay.txt") then
     local success, emotesData = pcall(function()
-        return loadstring(readfile("EmoteToPlay.lua"))()
+        return loadstring(readfile("EmotesToPlay.txt"))()
     end)
     if success and type(emotesData) == "table" then
         EmotesTable = emotesData
     else
-        warn("Failed to load or parse EmoteToPlay.lua")
+        warn("❌ Failed to load or parse EmotesToPlay.txt")
     end
 else
-    warn("EmoteToPlay.lua not found!")
+    warn("📭 EmotesToPlay.txt not found!")
 end
+
 
 local dropdownOptions = {}
 for emoteName, emoteFrames in pairs(EmotesTable) do
