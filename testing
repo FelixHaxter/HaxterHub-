@@ -2651,8 +2651,10 @@ else
     warn("❌ EmoteToPlay.lua not found!")
 end
 
--- Prepare dropdown
+-- Dropdown setup
 local dropdownOptions = {}
+
+-- Validate and collect emote names
 for emoteName, data in pairs(EmotesTable) do
     if type(data) == "table" and #data > 0 and type(data[1]) == "table" and data[1].Time and data[1].Data then
         print("✅ Found emote:", emoteName)
@@ -2664,12 +2666,12 @@ end
 
 table.sort(dropdownOptions)
 
--- Create slider
+-- Speed control
 Reanimate:CreateSlider("Animation Speed Adjuster", 0, 100, 50, function(R157Changer)
     R157 = R157Changer / 50  
 end)
 
--- Create dropdown
+-- Emote playback dropdown
 local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOptions, function(selected)
     if not R15reanimated then return end
 
@@ -2759,13 +2761,21 @@ local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOpt
     stopCurrentAnimation()
     beginPlayback(animFrames)
 end)
-wait(10)
+
+-- ⚠️ This must be declared AFTER dropdown creation
 function refreshDropdown()
+    -- Rebuild the dropdownOptions
+    dropdownOptions = {}
+
+    for emoteName, data in pairs(EmotesTable) do
+        if type(data) == "table" and #data > 0 and type(data[1]) == "table" and data[1].Time and data[1].Data then
+            table.insert(dropdownOptions, emoteName)
+        end
+    end
+
+    table.sort(dropdownOptions)
     reanimater15:Refresh(dropdownOptions)
 end
-
-
-
 
     R15DropdownScript = Reanimate:CreateDropdown("Saved Animations", dropdownOptions, function(SelectedR15Animation)
     if not R15reanimated then return end
