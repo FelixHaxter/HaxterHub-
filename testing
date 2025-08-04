@@ -2645,39 +2645,29 @@ if isfile("EmoteToPlay.lua") then
     if success and type(emotesData) == "table" then
         EmotesTable = emotesData
     else
-        warn("❌ Failed to load or parse EmoteToPlay.lua")
+        warn("Failed to load or parse EmoteToPlay.lua")
     end
 else
-    warn("❌ EmoteToPlay.lua not found!")
+    warn("EmoteToPlay.lua not found!")
 end
 
--- Dropdown setup
 local dropdownOptions = {}
-
--- Validate and collect emote names
-for emoteName, data in pairs(EmotesTable) do
-    if type(data) == "table" and #data > 0 and type(data[1]) == "table" and data[1].Time and data[1].Data then
-        print("✅ Found emote:", emoteName)
-        table.insert(dropdownOptions, emoteName)
-    else
-        print("⚠️ Skipping non-emote entry:", emoteName)
-    end
+for emoteName, emoteFrames in pairs(EmotesTable) do
+    table.insert(dropdownOptions, {
+        Label = emoteName,
+        Value = emoteFrames
+    })
 end
 
-table.sort(dropdownOptions)
-
--- Speed control
 Reanimate:CreateSlider("Animation Speed Adjuster", 0, 100, 50, function(R157Changer)
-    R157 = R157Changer / 50  
+    R157 = R157Changer / 50
 end)
 
--- Emote playback dropdown
-local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOptions, function(selected)
+local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOptions, function(selectedFrames)
     if not R15reanimated then return end
 
-    local animFrames = EmotesTable[selected]
-    if not animFrames then
-        Message("Error:", "Emote not found: " .. tostring(selected), 3)
+    if not selectedFrames then
+        Message("Error:", "No emote data found!", 3)
         return
     end
 
@@ -2742,8 +2732,12 @@ local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOpt
 
             local joints1, joints2 = {}, {}
 
-            for partName, cf in pairs(kf1.Data) do joints1[partName] = cf end
-            for partName, cf in pairs(kf2.Data) do joints2[partName] = cf end
+            for partName, cf in pairs(kf1.Data) do
+                joints1[partName] = cf
+            end
+            for partName, cf in pairs(kf2.Data) do
+                joints2[partName] = cf
+            end
 
             for jointName, joint in pairs(Joints) do
                 local cf1 = joints1[jointName]
@@ -2759,22 +2753,19 @@ local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOpt
     end
 
     stopCurrentAnimation()
-    beginPlayback(animFrames)
+    beginPlayback(selectedFrames)
 end)
 
--- ⚠️ This must be declared AFTER dropdown creation
+-- Optional refresh function
 function refreshDropdown()
-    -- Rebuild the dropdownOptions
-    dropdownOptions = {}
-
-    for emoteName, data in pairs(EmotesTable) do
-        if type(data) == "table" and #data > 0 and type(data[1]) == "table" and data[1].Time and data[1].Data then
-            table.insert(dropdownOptions, emoteName)
-        end
+    local newOptions = {}
+    for emoteName, emoteFrames in pairs(EmotesTable) do
+        table.insert(newOptions, {
+            Label = emoteName,
+            Value = emoteFrames
+        })
     end
-
-    table.sort(dropdownOptions)
-    reanimater15:Refresh(dropdownOptions)
+    reanimater15:Refresh(newOptions)
 end
 
     R15DropdownScript = Reanimate:CreateDropdown("Saved Animations", dropdownOptions, function(SelectedR15Animation)
