@@ -2759,6 +2759,7 @@ local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOpt
     stopCurrentAnimation()
     beginPlayback(animFrames)
 end)
+wait(10)
 function refreshDropdown()
     reanimater15:Refresh(dropdownOptions)
 end
