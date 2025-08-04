@@ -2756,7 +2756,7 @@ local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOpt
     beginPlayback(selectedFrames)
 end)
 
-wait(10)
+wait(0.5)
 function refreshDropdown()
     local newOptions = {}
     for emoteName, emoteFrames in pairs(EmotesTable) do
