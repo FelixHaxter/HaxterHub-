@@ -1959,6 +1959,7 @@ end
 		
 			return object
 		end
+local keybindToggleStates = {}
 
 function vermlibbb:CreateDropdown(name, list, callback)
     name = name or "Dropdown"
@@ -2324,19 +2325,39 @@ function vermlibbb:CreateDropdown(name, list, callback)
 
 		end)
 
-		Option.MouseButton1Click:Connect(function()
-		    DropdownOption.Text = name .. ": " .. opt.Label
-		    callback(opt.Value)
-		
-		    
-		    if selectedButton then
-		        selectedButton.BackgroundColor3 = defaultColor
-		    end
-		
-		    
-		    Option.BackgroundColor3 = highlightColor
-		    selectedButton = Option
-		end)
+Option.MouseButton1Click:Connect(function()
+    if selectedButton == Option then
+        
+        Option.BackgroundColor3 = defaultColor
+        selectedButton = nil
+        DropdownOption.Text = name .. ": (none)"
+        callback(nil)
+
+        
+        for key in pairs(keybindToggleStates) do
+            keybindToggleStates[key] = false
+        end
+    else
+        
+        DropdownOption.Text = name .. ": " .. opt.Label
+        callback(opt.Value)
+
+        
+        if selectedButton then
+            selectedButton.BackgroundColor3 = defaultColor
+        end
+
+        
+        for key in pairs(keybindToggleStates) do
+            keybindToggleStates[key] = false
+        end
+
+        
+        Option.BackgroundColor3 = highlightColor
+        selectedButton = Option
+    end
+end)
+
     end
 
     local function displayPage(page)
@@ -2380,92 +2401,65 @@ function vermlibbb:CreateDropdown(name, list, callback)
         refreshDropdown()
     end)
 
-    UIS.InputBegan:Connect(function(input, gpe)
-        if gpe or input.UserInputType ~= Enum.UserInputType.Keyboard then return end
-        for label, key in pairs(keybinds) do
-            if key == input.KeyCode.Name then
-                for _, opt in ipairs(options) do
-                    if opt.Label == label then
-					    DropdownOption.Text = name .. ": " .. opt.Label
-					    callback(opt.Value)
-					    if selectedButton then
-					        selectedButton.BackgroundColor3 = defaultColor
-					    end
-					    for _, frame in ipairs(DropdownContainer:GetChildren()) do
-					        local btn = frame:FindFirstChild(label)
-					        if btn then
-					            btn.BackgroundColor3 = highlightColor
-					            selectedButton = btn
-					            break
-					        end
-					    end
-					    break
-					end
-		if opt.Label == label then
-    	DropdownOption.Text = name .. ": " .. opt.Label
-    	callback(opt.Value)
-    	if selectedButton then
-    	    selectedButton.BackgroundColor3 = defaultColor
-    	end
-		for _, frame in ipairs(DropdownContainer:GetChildren()) do
-			local btn = frame:FindFirstChild(label)
-		        if btn then
-		            btn.BackgroundColor3 = highlightColor
-		            selectedButton = btn
-		            break
-		        end
-		    end
-		    break
-		end
-		if opt.Label == label then
-    	DropdownOption.Text = name .. ": " .. opt.Label
-    	callback(opt.Value)
-    	if selectedButton then
-    	    selectedButton.BackgroundColor3 = defaultColor
-    	end
-		for _, frame in ipairs(DropdownContainer:GetChildren()) do
-			local btn = frame:FindFirstChild(label)		
-        if btn then
-            btn.BackgroundColor3 = highlightColor
-            selectedButton = btn
+UIS.InputBegan:Connect(function(input, gpe)
+    if gpe or input.UserInputType ~= Enum.UserInputType.Keyboard then return end
+    local pressedKey = input.KeyCode.Name
+
+    for label, key in pairs(keybinds) do
+        if key == pressedKey then
+            
+            keybindToggleStates[label] = not keybindToggleStates[label]
+
+            
+            local optionButton = nil
+            for _, frame in ipairs(DropdownContainer:GetChildren()) do
+                if frame:IsA("Frame") then
+                    local btn = frame:FindFirstChild(label)
+                    if btn and btn:IsA("TextButton") then
+                        optionButton = btn
+                        break
+                    end
+                end
+            end
+
+if keybindToggleStates[label] then
+    
+    if selectedButton and selectedButton ~= optionButton then
+        selectedButton.BackgroundColor3 = defaultColor
+    end
+
+    
+    DropdownOption.Text = name .. ": " .. label
+    local optionValue = nil
+    for _, opt in ipairs(options) do
+        if opt.Label == label then
+            optionValue = opt.Value
             break
         end
-		    end
-		    break
-		end
-		if opt.Label == label then
-		    DropdownOption.Text = name .. ": " .. opt.Label
-		    callback(opt.Value)
-		    if selectedButton then
-		        selectedButton.BackgroundColor3 = defaultColor
-		    end
-			    for _, frame in ipairs(DropdownContainer:GetChildren()) do
-			        local btn = frame:FindFirstChild(label)
-			        if btn then
-			            btn.BackgroundColor3 = highlightColor
-			            selectedButton = btn
-			            break
-			        end
-			    end
-			    break
-			end
-				if opt.Label == label then
-				    DropdownOption.Text = name .. ": " .. opt.Label
-				    callback(opt.Value)
-				    if selectedButton then
-				        selectedButton.BackgroundColor3 = defaultColor
-				    end
-			    for _, frame in ipairs(DropdownContainer:GetChildren()) do
-			        local btn = frame:FindFirstChild(label)
-			        if btn then
-			            btn.BackgroundColor3 = highlightColor
-			            selectedButton = btn
-			            break
-			        end
-			    end
-					break
-				end
+    end
+    callback(optionValue)
+
+    
+    if optionButton then
+        optionButton.BackgroundColor3 = highlightColor
+        selectedButton = optionButton
+    end
+
+            else
+                
+                DropdownOption.Text = name .. ": (none)"
+                callback(nil)
+
+                
+                if optionButton then
+                    optionButton.BackgroundColor3 = defaultColor
+                    if selectedButton == optionButton then
+                        selectedButton = nil
+                    end
+                end
             end
+
+            break
         end
     end
 end)
