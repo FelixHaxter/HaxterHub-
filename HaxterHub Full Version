@@ -1,22 +1,3 @@
-
-repeat
-    task.wait()
-until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health > 0
-
-VirtualUser = game:GetService('VirtualUser')
-	
-	game:GetService('Players').LocalPlayer.Idled:Connect(function()
-	    VirtualUser:CaptureController()
-	    VirtualUser:ClickButton2(Vector2.new())
-	end)
-
-if game:GetService("CoreGui"):FindFirstChild("HaxterHub V6") then
-    return
-end
-
-if game.PlaceId == 2413927524 then 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/The%20Rake",true))()
-elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId == 17473325951 then --mic up
     repeat
         task.wait()
     until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health > 0
@@ -33,7 +14,7 @@ elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId
     end
     
     if game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId == 17473325951 then
-    success, vermLib = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-/refs/heads/main/HaxterHub%20UI%20Library")))
+    success, vermLib = pcall(loadstring(game:HttpGet("https://gist.githubusercontent.com/FelixHaxter/da94f847448ca70f9db5572f1c8e5e01/raw/bdc82f0ea981cdf824357a147734c7bef48f1b9a/ui%2520key%2520toggle")))
     if not success then
         return
     end
@@ -1860,7 +1841,7 @@ elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId
         
     end)
     
-    local previousWidth = 0 
+        local previousWidth = 0 
 
     Reanimate:CreateSlider("Width", 0, 500, 0, function(CharacterWidth)
         if not R15reanimated then
@@ -2452,76 +2433,222 @@ elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId
     wait(0.05)
     plr.Character.Animate.Enabled = true
     end)
+local gitREPO = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main"
+local EmoteSources = {
+    ["A Loving Present"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/A%20Loving%20Present%2Elua",
+    ["Double Up"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Double%20Up%2Elua",
+    ["Fishin"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Fishin%2Elua",
+    ["Lezginka"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lezginka%2Elua",
+    ["Lil Rover"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lil%20Rover%2Elua",
+    ["Bounce"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Bounce%2Elua",
+    ["Spike It"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Spike%20It%2Elua",
+    ["Back On "] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Back%20On%20.lua",
+    ["Sparrow Run"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sparrow%20Run%2Elua",
+    ["Inferno"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Inferno%2Elua",
+    ["Scootin"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Scootin%2Elua",
+    ["Get Schwifty"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Get%20Schwifty%2Elua",
+    ["Snoops Walk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Snoops%20Walk%2Elua",
+    ["Lil Warthog"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lil%20Warthog%2Elua",
+    ["TF Engineer"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/TF%20Engineer%2Elua",
+    ["Gangnam Style"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Gangnam%20Style%2Elua",
+    ["Give head (Goofy edition)"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Give%20head%20%28Goofy%20edition%29%2Elua",
+    ["Get butt fucked"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Get%20butt%20fucked%2Elua",
+    ["Lil Mower"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lil%20Mower%2Elua",
+    ["GEEK TIME"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/GEEK%20TIME%2Elua",
+    ["Havana"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Havana%2Elua",
+    ["Whiplash"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Whiplash%2Elua",
+    ["Boop!"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Boop%21%2Elua",
+    ["Self Head"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Self%20Head%2Elua",
+    ["IDOL"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/IDOL%2Elua",
+    ["Leapin"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Leapin%2Elua",
+    ["Full Tilt"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Full%20Tilt%2Elua",
+    ["Awesome Strut"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Awesome%20Strut%2Elua",
+    ["Stay Dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Stay%20Dance%2Elua",
+    ["Very Sneaky"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Very%20Sneaky%2Elua",
+    ["Fanciful"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Fanciful%2Elua",
+    ["Lil Bounce"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lil%20Bounce%2Elua",
+    ["Take It Slow"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Take%20It%20Slow%2Elua",
+    ["Sway"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sway%2Elua",
+    ["First Month"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/First%20Month%2Elua",
+    ["Goofy twerk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Goofy%20twerk%2Elua",
+    ["Jerking Off"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Jerking%20Off%2Elua",
+    ["Follow the Piper"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Follow%20the%20Piper%2Elua",
+    ["Alive"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Alive%2Elua",
+    ["The Airplane"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/The%20Airplane%2Elua",
+    ["Sweethearts"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sweethearts%2Elua",
+    ["Valentines Surprise"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Valentines%20Surprise%2Elua",
+    ["Dirtbike Challenge"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Dirtbike%20Challenge%2Elua",
+    ["Conga"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Conga%2Elua",
+    ["Hit Harder"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Hit%20Harder%2Elua",
+    ["Professional"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Professional%2Elua",
+    ["I Got Dominos"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/I%20Got%20Dominos%2Elua",
+    ["Backshots"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Backshots%2Elua",
+    ["DON'T HURT EM'!"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/DON%27T%20HURT%20EM%27%21%2Elua",
+    ["Hopscotch"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Hopscotch%2Elua",
+    ["Lil Saucer"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lil%20Saucer%2Elua",
+    ["Last Forever"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Last%20Forever%2Elua",
+    ["Were Flying"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Were%20Flying%2Elua",
+    ["Tow Truck Surfer"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Tow%20Truck%20Surfer%2Elua",
+    ["Caves In"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Caves%20In%2Elua",
+    ["Moongazer"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Moongazer%2Elua",
+    ["Tunak Tunak Tun"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Tunak%20Tunak%20Tun%2Elua",
+    ["Twerk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Twerk%2Elua",
+    ["Members Only"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Members%20Only%2Elua",
+    ["Jaywalk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Jaywalk%2Elua",
+    ["Square Up"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Square%20Up%2Elua",
+    ["Sway Sway"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sway%20Sway%2Elua",
+    ["Car Shearer Dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Car%20Shearer%20Dance%2Elua",
+    ["Jump In The Cadillac"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Jump%20In%20The%20Cadillac%2Elua",
+    ["Doodle"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Doodle%2Elua",
+    ["Streets"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Streets%2Elua",
+    ["Side Shuffle"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Side%20Shuffle%2Elua",
+    ["Wait No Come Back"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Wait%20No%20Come%20Back%2Elua",
+    ["lap dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/lap%20dance%2Elua",
+    ["TF Scout"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/TF%20Scout%2Elua",
+    ["Hustla"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Hustla%2Elua",
+    ["Photograph"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Photograph%2Elua",
+    ["Spongebob"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Spongebob%2Elua",
+    ["Lil Monster"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lil%20Monster%2Elua",
+    ["TF Sniper"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/TF%20Sniper%2Elua",
+    ["Zombified"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Zombified%2Elua",
+    ["My World"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/My%20World%2Elua",
+    ["Russian Kick"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Russian%20Kick%2Elua",
+    ["Im Only Human"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Im%20Only%20Human%2Elua",
+    ["Interstellar Bass"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Interstellar%20Bass%2Elua",
+    ["Get Griddy"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Get%20Griddy%2Elua",
+    ["big swastika (Use Inf15Thin)"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/big%20swastika%20%28Use%20Inf15Thin%29%2Elua",
+    ["Zrde"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Zrde%2Elua",
+    ["Zombie Shambles"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Zombie%20Shambles%2Elua",
+    ["Witch Way"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Witch%20Way%2Elua",
+    ["Phonky Town"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Phonky%20Town%2Elua",
+    ["Wind Up"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Wind%20Up%2Elua",
+    ["My Main"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/My%20Main%2Elua",
+    ["Where Is Matt"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Where%20Is%20Matt%2Elua",
+    ["Cluck Strut"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Cluck%20Strut%2Elua",
+    ["Think Mark Think"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Think%20Mark%20Think%2Elua",
+    ["Walkin Pretty"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Walkin%20Pretty%2Elua",
+    ["Runaway Twerk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Runaway%20Twerk%2Elua",
+    ["Pick It Up"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Pick%20It%20Up%2Elua",
+    ["Stay Afloat"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Stay%20Afloat%2Elua",
+    ["Ride The Pony"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Ride%20The%20Pony%2Elua",
+    ["Waddle Away"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Waddle%20Away%2Elua",
+    ["In Da Party"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/In%20Da%20Party%2Elua",
+    ["TF Kazotsky Kick"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/TF%20Kazotsky%20Kick%2Elua",
+    ["Twerk On The Floor"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Twerk%20On%20The%20Floor%2Elua",
+    ["Tra La La"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Tra%20La%20La%2Elua",
+    ["I Aint Afraid"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/I%20Aint%20Afraid%2Elua",
+    ["Tippy Tap"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Tippy%20Tap%2Elua",
+    ["Go Mufasa"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Go%20Mufasa%2Elua",
+    ["Timeless"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Timeless%2Elua",
+    ["We Like To Move It"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/We%20Like%20To%20Move%20It%2Elua",
+    ["Fandangle"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Fandangle%2Elua",
+    ["Victory Lap"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Victory%20Lap%2Elua",
+    ["TF Demoman"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/TF%20Demoman%2Elua",
+    ["Segway Tour"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Segway%20Tour%2Elua",
+    ["Sunny Stroll"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sunny%20Stroll%2Elua",
+    ["Sucker"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sucker%2Elua",
+    ["Strut"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Strut%2Elua",
+    ["Hoverin"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Hoverin%2Elua",
+    ["Stride"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Stride%2Elua",
+    ["Funk Do Bounce"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Funk%20Do%20Bounce%2Elua",
+    ["Meow Dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Meow%20Dance%2Elua",
+    ["Disco Dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Disco%20Dance%2Elua",
+    ["Balletic"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Balletic%2Elua",
+    ["Apple Pen"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Apple%20Pen%2Elua",
+    ["Fight"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Fight%2Elua",
+    ["Blade"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Blade%2Elua",
+    ["Skull Cracker"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Skull%20Cracker%2Elua",
+    ["Chicken Stride"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Chicken%20Stride%2Elua",
+    ["Specialist Seto"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Specialist%20Seto%2Elua",
+    ["Go Do It"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Go%20Do%20It%2Elua",
+    ["Goofy Hump"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Goofy%20Hump%2Elua",
+    ["Moonbounce"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Moonbounce%2Elua",
+    ["Evasive Maneuvers"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Evasive%20Maneuvers%2Elua",
+    ["Caffeinated"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Caffeinated%2Elua",
+    ["Skip"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Skip%2Elua",
+    ["Shake  Split"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Shake%20%20Split%2Elua",
+    ["Shake  Slash"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Shake%20%20Slash%2Elua",
+    ["GET JIGGY"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/GET%20JIGGY%2Elua",
+    ["Rolly Rider"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Rolly%20Rider%2Elua",
+    ["Business Up Front"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Business%20Up%20Front%2Elua",
+    ["Fist Bump"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Fist%20Bump%2Elua",
+    ["Monkey Mosh"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Monkey%20Mosh%2Elua",
+    ["Bim Bam Toi"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Bim%20Bam%20Toi%2Elua",
+    ["Scissoring"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Scissoring%2Elua",
+    ["Guitar Walk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Guitar%20Walk%2Elua",
+    ["Lively Walkin"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lively%20Walkin%2Elua",
+    ["Saul"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Saul%2Elua",
+    ["Feelin Jaunty"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Feelin%20Jaunty%2Elua",
+    ["Fishy Flourish"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Fishy%20Flourish%2Elua",
+    ["Sasquatchin"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sasquatchin%2Elua",
+    ["Sand Walk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sand%20Walk%2Elua",
+    ["Crazy Crazy"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Crazy%20Crazy%2Elua",
+    ["High Five"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/High%20Five%2Elua",
+    ["A Vlog"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/A%20Vlog%2Elua",
+    ["Remember The Time"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Remember%20The%20Time%2Elua",
+    ["Holiday"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Holiday%2Elua",
+    ["Lil Octane"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Lil%20Octane%2Elua",
+    ["Roki"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Roki%2Elua",
+    ["Llama Conga"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Llama%20Conga%2Elua",
+    ["Misery"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Misery%2Elua",
+    ["My Honest Reaction"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/My%20Honest%20Reaction%2Elua",
+    ["Nitro Fueled"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Nitro%20Fueled%2Elua",
+    ["Ralsei Duo"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Ralsei%20Duo%2Elua",
+    ["I Wanna Run Away"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/I%20Wanna%20Run%20Away%2Elua",
+    ["Neo"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Neo%2Elua",
+    ["Little Buddy Was Sick"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Little%20Buddy%20Was%20Sick%2Elua",
+    ["I Like To Move It"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/I%20Like%20To%20Move%20It%2Elua",
+    ["At 3AM"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/At%203AM%2Elua",
+    ["Bear Hug"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Bear%20Hug%2Elua",
+    ["Hoppity"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Hoppity%2Elua",
+    ["Flippin' Awesome"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Flippin%27%20Awesome%2Elua",
+    ["Entertainer"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Entertainer%2Elua",
+    ["2 arm stroke"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/2%20arm%20stroke%2Elua",
+}
 
-    local EmoteSources = {
-        ["2 arm stroke"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/2%20arm%20stroke.lua",
-        ["Backshots"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Backshots.lua",
-        ["Bear Hug"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Bear%20Hug.lua",
-        ["Boop!"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Boop%21.lua",
-        ["Business Up Front"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Business%20Up%20Front.lua",
-        ["Caffeinated"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Caffeinated.lua",
-        ["DON'T HURT EM'!"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/DON%27T%20HURT%20EM%27%21.lua",
-        ["Disco Dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Disco%20Dance.lua",
-        ["Double Up"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Double%20Up.lua",
-        ["Entertainer"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Entertainer.lua",
-        ["Fist Bump"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Fist%20Bump.lua",
-        ["Flippin' Awesome"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Flippin%27%20Awesome.lua",
-        ["Funk Do Bounce"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Funk%20Do%20Bounce.lua",
-        ["GET JIGGY"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/GET%20JIGGY.lua",
-        ["Get Schwifty"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Get%20Schwifty.lua",
-        ["Get butt fucked"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Get%20butt%20fucked.lua",
-        ["Give head (Goofy edition)"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Give%20head%20%28Goofy%20edition%29.lua",
-        ["Go Do It"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Go%20Do%20It.lua",
-        ["Goofy Hump"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Goofy%20Hump.lua",
-        ["Goofy twerk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Goofy%20twerk.lua",
-        ["Hustla"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Hustla.lua",
-        ["I Wanna Run Away"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/I%20Wanna%20Run%20Away.lua",
-        ["IDOL"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/IDOL.lua",
-        ["Jerking Off"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Jerking%20Off.lua",
-        ["Meow Dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Meow%20Dance.lua",
-        ["Misery"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Misery.lua",
-        ["My Main"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/My%20Main.lua",
-        ["Remember The Time"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Remember%20The%20Time.lua",
-        ["Runaway Twerk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Runaway%20Twerk.lua",
-        ["Scissoring"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Scissoring.lua",
-        ["Self Head"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Self%20Head.lua",
-        ["Snoop’s Walk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Snoopâ€™s%20Walk.lua",
-        ["Spongebob"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Spongebob.lua",
-        ["Sucker"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sucker.lua",
-        ["Sway Sway"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Sway%20Sway.lua",
-        ["Take It Slow"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Take%20It%20Slow.lua",
-        ["Tunak Tunak Tun"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Tunak%20Tunak%20Tun.lua",
-        ["Twerk On The Floor"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Twerk%20On%20The%20Floor.lua",
-        ["Twerk"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Twerk.lua",
-        ["Wait No Come Back"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Wait%20No%20Come%20Back.lua",
-        ["Whiplash"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/Whiplash.lua",
-        ["big swastika (Use Inf15Thin)"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/big%20swastika%20%28Use%20Inf15Thin%29.lua",
-        ["lap dance"] = "https://raw.githubusercontent.com/FelixHaxter/RobloxEmotes/refs/heads/main/lap%20dance.lua",
-    }
+local EmotesTable = {}
 
+local function getClosestEmoteName(inputName)
+    local bestMatch = nil
+    local highestSimilarity = 0
 
-    local EmotesTable = {}
+    for emoteName in pairs(EmoteSources) do
+        local similarity = 0
+        local minLength = math.min(#inputName, #emoteName)
 
-
-    local function stopCurrentAnimation()
-        EmotePlayingR15 = false
-        AnimationActive = false
-        StopAnim = true
-        local character = plr.Character
-        if character and character:FindFirstChild("Humanoid") then
-            local humanoid = character.Humanoid
-            local animator = humanoid:FindFirstChild("Animator")
-            if animator then animator:Destroy() end
-            Instance.new("Animator", humanoid)
-            wait(0.05)
+        for i = 1, minLength do
+            if inputName:sub(i,i):lower() == emoteName:sub(i,i):lower() then
+                similarity += 1
+            end
         end
-        if character and character:FindFirstChild("Animate") then
-            character.Animate.Enabled = true
+
+        if similarity > highestSimilarity then
+            highestSimilarity = similarity
+            bestMatch = emoteName
         end
     end
 
+    return bestMatch
+end
 
-    local function beginPlayback(frames)
+local function stopCurrentAnimation()
+    EmotePlayingR15 = false
+    AnimationActive = false
+    StopAnim = true
+    local character = plr.Character
+    if character and character:FindFirstChild("Humanoid") then
+        local humanoid = character.Humanoid
+        local animator = humanoid:FindFirstChild("Animator")
+        if animator then animator:Destroy() end
+        Instance.new("Animator", humanoid)
+        wait(0.05)
+    end
+    if character and character:FindFirstChild("Animate") then
+        character.Animate.Enabled = true
+    end
+end
+
+local function beginPlayback(frames)
     local animationState = {}
     animationState.keyframes = frames
     animationState.totalDuration = frames[#frames].Time
@@ -2595,405 +2722,410 @@ elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId
             end
         end
     end)
+end
+
+local dropdownOptions = {"nil"}
+for emoteName in pairs(EmoteSources) do
+    table.insert(dropdownOptions, emoteName)
+end
+
+Reanimate:CreateSlider("Animation Speed Adjuster", 0, 100, 50, function(R157Changer)
+    R157 = R157Changer / 50
+end)
+
+local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOptions, function(selected)
+    if selected == nil or selected == "nil" then
+        stopCurrentAnimation()
+        return
     end
 
-
-    local dropdownOptions = {"nil"}
-    for emoteName in pairs(EmoteSources) do
-        table.insert(dropdownOptions, emoteName)
+    local matchedName = getClosestEmoteName(selected)
+    if not matchedName then
+        Message("Error", "Could not find a matching emote.", 3)
+        return
     end
 
+    if not EmotesTable[matchedName] then
+        local filePath = "EmoteCache_" .. matchedName .. ".lua"
+        local dataString
+        local success, result
 
-    Reanimate:CreateSlider("Animation Speed Adjuster", 0, 100, 50, function(R157Changer)
-        R157 = R157Changer / 50
-    end)
+        if isfile(filePath) then
+            success, result = pcall(function()
+                return loadstring(readfile(filePath))()
+            end)
+        else
+            local url = EmoteSources[matchedName]
+            success, result = pcall(function()
+                return game:HttpGet(url, true)
+            end)
 
-
-    local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOptions, function(selected)
-        if not R15reanimated then return end
-        if selected == nil or selected == "nil" then
-            stopCurrentAnimation()
-            return
+            if success then
+                writefile(filePath, result)
+                success, result = pcall(function()
+                    return loadstring(result)()
+                end)
+            end
         end
 
-        if not EmotesTable[selected] then
-            local filePath = "EmoteCache_" .. selected .. ".lua"
-            local dataString
-            local success, result
+        if success and type(result) == "table" then
+            
+            for _, value in pairs(result) do
+                EmotesTable[matchedName] = value
+                break
+            end
+            print("Loaded emote:", matchedName)
+        else
+            Message("Error", "Failed to load emote: " .. matchedName, 3)
+            return
+        end
+    end
 
-            if isfile(filePath) then
-                success, result = pcall(function()
-                    return loadstring(readfile(filePath))()
-                end)
-            else
-                local url = EmoteSources[selected]
-                success, result = pcall(function()
-                    return game:HttpGet(url, true)
-                end)
+    local selectedFrames = EmotesTable[matchedName]
+    if not selectedFrames then
+        Message("Error", "No emote data found for: " .. matchedName, 3)
+        return
+    end
 
-                if success then
-                    writefile(filePath, result)
-                    success, result = pcall(function()
-                        return loadstring(result)()
-                    end)
+    stopCurrentAnimation()
+    beginPlayback(selectedFrames)
+end)
+
+function refreshDropdown()
+    local newOptions = {"nil"}
+    for name in pairs(EmoteSources) do
+        table.insert(newOptions, name)
+    end
+    reanimater15:Refresh(newOptions)
+end
+
+    R15DropdownScript = Reanimate:CreateDropdown("Saved Animations", dropdownOptions, function(SelectedR15Animation)
+    if not R15reanimated then return end
+
+    local animId = ValuesOfR15Animations[SelectedR15Animation]
+    if not animId then
+        Message("Error:", "No ID.", 3)
+        return
+    end
+
+    local animationState = {}
+
+    function beginPlayback(animAsset)
+        animationState.currentId = animId
+        animationState.keyframes = animAsset:GetKeyframes()
+        animationState.totalDuration = animationState.keyframes[#animationState.keyframes].Time
+
+        local character = plr.Character or plr.CharacterAdded:Wait()
+        local humanoid = character:FindFirstChild("Humanoid")
+        if humanoid then
+            local animator = humanoid:FindFirstChild("Animator")
+            if animator then animator:Destroy() end
+        end
+
+        local animate = character:FindFirstChild("Animate")
+        if animate then animate.Enabled = false end
+
+        local elapsedTime = 0
+        local Joints = getJoints(character)
+
+        R157 = R157 or 1
+        AnimationActive = true
+        StopAnim = false
+        CurrentAnimationID = animId
+        EmotePlayingR15 = true
+
+        if CurrentAnimConnection then
+            CurrentAnimConnection:Disconnect()
+        end
+
+        CurrentAnimConnection = RunService.Heartbeat:Connect(function(deltaTime)
+            if not AnimationActive or StopAnim then
+                AnimationActive = false
+                StopAnim = true
+                if CurrentAnimConnection then
+                    CurrentAnimConnection:Disconnect()
+                    CurrentAnimConnection = nil
+                end
+                return
+            end
+
+            local speed = math.clamp(R157, 0, 10)
+            if speed == 0 then return end
+
+            elapsedTime += deltaTime * speed
+            if elapsedTime > animationState.totalDuration then
+                elapsedTime = 0
+            end
+
+            local keyframes = animationState.keyframes
+            local currentIndex = 1
+            for i = 1, #keyframes - 1 do
+                if elapsedTime >= keyframes[i].Time and elapsedTime <= keyframes[i + 1].Time then
+                    currentIndex = i
+                    break
                 end
             end
 
-            if success and type(result) == "table" and result[selected] then
-                EmotesTable[selected] = result[selected]
-                print("✅ Loaded emote:", selected)
-            else
-                Message("Error", "❌ Failed to load emote: " .. selected, 3)
-                return
-            end
-        end
+            local kf1, kf2 = keyframes[currentIndex], keyframes[currentIndex + 1]
+            local alpha = math.clamp((elapsedTime - kf1.Time) / (kf2.Time - kf1.Time), 0, 1)
 
-        local selectedFrames = EmotesTable[selected]
-        if not selectedFrames then
-            Message("Error", "❌ No emote data found for: " .. selected, 3)
+            local joints1, joints2 = {}, {}
+
+            for _, pose in ipairs(kf1:GetDescendants()) do
+                if pose:IsA("Pose") then
+                    joints1[pose.Name] = pose.CFrame
+                end
+            end
+
+            for _, pose in ipairs(kf2:GetDescendants()) do
+                if pose:IsA("Pose") then
+                    joints2[pose.Name] = pose.CFrame
+                end
+            end
+
+            for jointName, joint in pairs(Joints) do
+                local cf1 = joints1[jointName]
+                local cf2 = joints2[jointName]
+
+                if cf1 and cf2 then
+                    joint.Transform = cf1:Lerp(cf2, alpha)
+                elseif cf1 then
+                    joint.Transform = cf1
+                end
+            end
+        end)
+    end
+
+    
+    if CachedKeyframes[SelectedR15Animation] then
+        stopCurrentAnimation()
+        beginPlayback(CachedKeyframes[SelectedR15Animation])
+        return
+    end
+
+    if table.find(LoadingKeyFrames, SelectedR15Animation) then
+        return
+    end
+    task.spawn(function()
+
+    table.insert(LoadingKeyFrames, SelectedR15Animation)
+    end)
+    task.spawn(function()
+        Message("Loading...", SelectedR15Animation, 1)
+    end)
+
+    task.spawn(function()
+        local success, animAsset = pcall(function()
+            return game:GetObjects("rbxassetid://" .. animId)[1]
+        end)
+
+        if not success or not animAsset then
+            Message("Error:", "Failed to load animation asset.", 5)
             return
         end
+
+        local keyframes = animAsset:GetKeyframes()
+        table.sort(keyframes, function(a, b) return a.Time < b.Time end)
+
+        CachedKeyframes[SelectedR15Animation] = animAsset
 
         stopCurrentAnimation()
-        beginPlayback(selectedFrames)
+        beginPlayback(animAsset)
+    end)
+    end)
+
+    local BundleAnimations = {
+        ["Ghoul"] = {
+            Idle1 = "70375165570005",
+            Idle2 = "125297495838364",
+            Walk = "133384983792574",
+            Jump = "90476847588208",
+            Fall = "92476906497880",
+        },
+        ["Mario"] = {
+            Idle1 = "123535545508396",
+            Idle2 = "123535545508396",
+            Walk = "113842454592753",
+            Fall = "85998191316243",
+        },
+        ["Sonic"] = {
+            Idle1 = "79959087101646",
+            Idle2 = "93150740949815",
+            Walk = "114083253231776",
+            Run = "85348354340876",
+            Fall = "124102683487743",
+        },
+        ["Steve"] = {
+            Idle1 = "87940284786141",
+            Idle2 = "86448640636041",
+            Walk = "73797342305007",
+            Run = "121737313718701",
+            Fall = "90141209627024",
+        },
+        ["Sk8tr"] = {
+            Idle1 = "123280654495775",
+            Idle2 = "138829974274539",
+            Walk = "102991148198373",
+            Run = "132244227605169",
+            Fall = "73107394153657",
+        },
+        ["Garry's Mod"] = {
+            Idle1 = "135106186777948",
+            Idle2 = "116448075157345",
+            Walk = "138116381768231",
+            Run = "133961206309287",
+            Fall = "123007240693063",
+        },
+        ["Jolly"] = {
+            Idle1 = "114744077527863",
+            Idle2 = "80672406469860",
+            Walk = "118910249151966",
+            Run = "84568959237630",
+            Fall = "100475529580950",
+        },
+    }
+
+    local currentState
+    local steppedConnection
+    local idleCoroutine
+
+    Reanimate:CreateDropdown("R15 Custom Bundles", CustomBundle, function(selectedMode)
+        mode = selectedMode
+        if steppedConnection then
+            steppedConnection:Disconnect()
+            steppedConnection = nil
+        end
+        if idleCoroutine then
+            coroutine.close(idleCoroutine)
+            idleCoroutine = nil
+        end
+        AnimationActive = false
+        StopAnim = true
+        currentState = nil
+        if mode == "none" then
+            return
+        end
+        if not R15reanimated then 
+            Message("Error:", "Please Reanimate", 5)
+            return 
+        end
+        local character = plr.Character or plr.CharacterAdded:Wait()
+        local humanoid = character:FindFirstChild("Humanoid")
+        local animate = character:FindFirstChild("Animate")
+        local root = character:FindFirstChild("HumanoidRootPart")
+        if humanoid then
+            local animator = humanoid:FindFirstChild("Animator")
+            if animator then animator:Destroy() end
+            Instance.new("Animator", humanoid)
+        end
+        if animate then
+            animate.Enabled = false
+        end
+        AnimationActive = true
+        StopAnim = false
+
+        local bundle = BundleAnimations[mode]
+        if bundle and bundle.Idle1 then
+            currentState = "Idle"
+            PlayAnimR15(bundle.Idle1)
+        end
+
+
+        idleCoroutine = coroutine.create(function()
+            while AnimationActive do
+                if currentState == "Idle" and not EmotePlayingR15 then
+                    task.wait(math.random(7, 20))
+                    if currentState == "Idle" and not EmotePlayingR15 then
+                        if bundle and bundle.Idle2 then
+                            PlayAnimR15(bundle.Idle2)
+                            task.wait(5.5)
+                            if currentState == "Idle" and not EmotePlayingR15 then
+                                PlayAnimR15(bundle.Idle1)
+                            end
+                        end
+                    end
+                else
+                    task.wait(1)
+                end
+            end
+        end)
+        coroutine.resume(idleCoroutine)
+
+
+        steppedConnection = game:GetService("RunService").Stepped:Connect(function()
+            if not AnimationActive or not root or EmotePlayingR15 then return end
+
+            local state = humanoid:GetState()
+            local moving = humanoid.MoveDirection.Magnitude > 0
+            local newState
+
+            if state == Enum.HumanoidStateType.Freefall then
+                newState = "Fall"
+            elseif state == Enum.HumanoidStateType.Jumping then
+                newState = "Jump"
+            elseif moving then
+                newState = "Walk"
+            else
+                newState = "Idle"
+            end
+
+            if newState ~= currentState then
+                currentState = newState
+                if not bundle then return end
+
+                if currentState == "Idle" then
+                    PlayAnimR15(bundle.Idle1)
+                elseif currentState == "Jump" then
+                    PlayAnimR15(bundle.Jump or bundle.Fall)
+                elseif currentState == "Fall" then
+                    PlayAnimR15(bundle.Fall)
+                elseif currentState == "Walk" then
+                    PlayAnimR15(bundle.Run or bundle.Walk)
+                end
+            end
+        end)
     end)
 
 
-    function refreshDropdown()
-        local newOptions = {"nil"}
-        for name in pairs(EmoteSources) do
-            table.insert(newOptions, name)
-        end
-        reanimater15:Refresh(newOptions)
-    end
-
-        R15DropdownScript = Reanimate:CreateDropdown("Saved Animations", dropdownOptions, function(SelectedR15Animation)
-        if not R15reanimated then return end
-
-        local animId = ValuesOfR15Animations[SelectedR15Animation]
-        if not animId then
-            Message("Error:", "No ID.", 3)
-            return
-        end
-
-        local animationState = {}
-
-        function beginPlayback(animAsset)
-            animationState.currentId = animId
-            animationState.keyframes = animAsset:GetKeyframes()
-            animationState.totalDuration = animationState.keyframes[#animationState.keyframes].Time
-
-            local character = plr.Character or plr.CharacterAdded:Wait()
-            local humanoid = character:FindFirstChild("Humanoid")
-            if humanoid then
-                local animator = humanoid:FindFirstChild("Animator")
-                if animator then animator:Destroy() end
-            end
-
-            local animate = character:FindFirstChild("Animate")
-            if animate then animate.Enabled = false end
-
-            local elapsedTime = 0
-            local Joints = getJoints(character)
-
-            R157 = R157 or 1
-            AnimationActive = true
-            StopAnim = false
-            CurrentAnimationID = animId
-            EmotePlayingR15 = true
-
-            if CurrentAnimConnection then
-                CurrentAnimConnection:Disconnect()
-            end
-
-            CurrentAnimConnection = RunService.Heartbeat:Connect(function(deltaTime)
-                if not AnimationActive or StopAnim then
-                    AnimationActive = false
-                    StopAnim = true
-                    if CurrentAnimConnection then
-                        CurrentAnimConnection:Disconnect()
-                        CurrentAnimConnection = nil
-                    end
-                    return
-                end
-
-                local speed = math.clamp(R157, 0, 10)
-                if speed == 0 then return end
-
-                elapsedTime += deltaTime * speed
-                if elapsedTime > animationState.totalDuration then
-                    elapsedTime = 0
-                end
-
-                local keyframes = animationState.keyframes
-                local currentIndex = 1
-                for i = 1, #keyframes - 1 do
-                    if elapsedTime >= keyframes[i].Time and elapsedTime <= keyframes[i + 1].Time then
-                        currentIndex = i
-                        break
-                    end
-                end
-
-                local kf1, kf2 = keyframes[currentIndex], keyframes[currentIndex + 1]
-                local alpha = math.clamp((elapsedTime - kf1.Time) / (kf2.Time - kf1.Time), 0, 1)
-
-                local joints1, joints2 = {}, {}
-
-                for _, pose in ipairs(kf1:GetDescendants()) do
-                    if pose:IsA("Pose") then
-                        joints1[pose.Name] = pose.CFrame
-                    end
-                end
-
-                for _, pose in ipairs(kf2:GetDescendants()) do
-                    if pose:IsA("Pose") then
-                        joints2[pose.Name] = pose.CFrame
-                    end
-                end
-
-                for jointName, joint in pairs(Joints) do
-                    local cf1 = joints1[jointName]
-                    local cf2 = joints2[jointName]
-
-                    if cf1 and cf2 then
-                        joint.Transform = cf1:Lerp(cf2, alpha)
-                    elseif cf1 then
-                        joint.Transform = cf1
-                    end
-                end
-            end)
-        end
-
-
-        if CachedKeyframes[SelectedR15Animation] then
-            stopCurrentAnimation()
-            beginPlayback(CachedKeyframes[SelectedR15Animation])
-            return
-        end
-
-        if table.find(LoadingKeyFrames, SelectedR15Animation) then
-            return
-        end
-        task.spawn(function()
-
-        table.insert(LoadingKeyFrames, SelectedR15Animation)
-        end)
-        task.spawn(function()
-            Message("Loading...", SelectedR15Animation, 1)
-        end)
-
-        task.spawn(function()
-            local success, animAsset = pcall(function()
-                return game:GetObjects("rbxassetid://" .. animId)[1]
-            end)
-
-            if not success or not animAsset then
-                Message("Error:", "Failed to load animation asset.", 5)
-                return
-            end
-
-            local keyframes = animAsset:GetKeyframes()
-            table.sort(keyframes, function(a, b) return a.Time < b.Time end)
-
-            CachedKeyframes[SelectedR15Animation] = animAsset
-
-            stopCurrentAnimation()
-            beginPlayback(animAsset)
-        end)
-        end)
-
-        local BundleAnimations = {
-            ["Ghoul"] = {
-                Idle1 = "70375165570005",
-                Idle2 = "125297495838364",
-                Walk = "133384983792574",
-                Jump = "90476847588208",
-                Fall = "92476906497880",
-            },
-            ["Mario"] = {
-                Idle1 = "123535545508396",
-                Idle2 = "123535545508396",
-                Walk = "113842454592753",
-                Fall = "85998191316243",
-            },
-            ["Sonic"] = {
-                Idle1 = "79959087101646",
-                Idle2 = "93150740949815",
-                Walk = "114083253231776",
-                Run = "85348354340876",
-                Fall = "124102683487743",
-            },
-            ["Steve"] = {
-                Idle1 = "87940284786141",
-                Idle2 = "86448640636041",
-                Walk = "73797342305007",
-                Run = "121737313718701",
-                Fall = "90141209627024",
-            },
-            ["Sk8tr"] = {
-                Idle1 = "123280654495775",
-                Idle2 = "138829974274539",
-                Walk = "102991148198373",
-                Run = "132244227605169",
-                Fall = "73107394153657",
-            },
-            ["Garry's Mod"] = {
-                Idle1 = "135106186777948",
-                Idle2 = "116448075157345",
-                Walk = "138116381768231",
-                Run = "133961206309287",
-                Fall = "123007240693063",
-            },
-            ["Jolly"] = {
-                Idle1 = "114744077527863",
-                Idle2 = "80672406469860",
-                Walk = "118910249151966",
-                Run = "84568959237630",
-                Fall = "100475529580950",
-            },
-        }
-
-        local currentState
-        local steppedConnection
-        local idleCoroutine
-
-        Reanimate:CreateDropdown("R15 Custom Bundles", CustomBundle, function(selectedMode)
-            mode = selectedMode
-            if steppedConnection then
-                steppedConnection:Disconnect()
-                steppedConnection = nil
-            end
-            if idleCoroutine then
-                coroutine.close(idleCoroutine)
-                idleCoroutine = nil
-            end
-            AnimationActive = false
-            StopAnim = true
-            currentState = nil
-            if mode == "none" then
-                return
-            end
-            if not R15reanimated then 
-                Message("Error:", "Please Reanimate", 5)
+    loadConfig()
+    Reanimate:CreateButton("R6 Reanimate", function(state)
+            if R15reanimated or plr.Character.Humanoid.Health == 0 then
+                Message("R15 Reanimate Status:", "Active", 5)
                 return 
             end
-            local character = plr.Character or plr.CharacterAdded:Wait()
-            local humanoid = character:FindFirstChild("Humanoid")
-            local animate = character:FindFirstChild("Animate")
-            local root = character:FindFirstChild("HumanoidRootPart")
-            if humanoid then
-                local animator = humanoid:FindFirstChild("Animator")
-                if animator then animator:Destroy() end
-                Instance.new("Animator", humanoid)
+            if R6reanimated or plr.Character.Humanoid.Health == 0 then
+                Message("R6 Reanimate Status:", "Active", 5)
+                return 
             end
-            if animate then
-                animate.Enabled = false
-            end
-            AnimationActive = true
-            StopAnim = false
-
-            local bundle = BundleAnimations[mode]
-            if bundle and bundle.Idle1 then
-                currentState = "Idle"
-                PlayAnimR15(bundle.Idle1)
-            end
-
-
-            idleCoroutine = coroutine.create(function()
-                while AnimationActive do
-                    if currentState == "Idle" and not EmotePlayingR15 then
-                        task.wait(math.random(7, 20))
-                        if currentState == "Idle" and not EmotePlayingR15 then
-                            if bundle and bundle.Idle2 then
-                                PlayAnimR15(bundle.Idle2)
-                                task.wait(5.5)
-                                if currentState == "Idle" and not EmotePlayingR15 then
-                                    PlayAnimR15(bundle.Idle1)
-                                end
-                            end
+            R6reanimated = true
+            if "HaxterFelix is the best" then
+            
+                local v3_net, v3_808 = Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)    
+                function getNetlessVelocity(realPartVelocity)
+                    local mag = realPartVelocity.Magnitude
+                    if mag > 0 then
+                        local unit = realPartVelocity.Unit
+                        if (unit.Y > 0.0) or (unit.Y < -0.0) then
+                            return unit * (0.0 / unit.Y)
                         end
-                    else
-                        task.wait(1)
                     end
+                    return v3_net + realPartVelocity * v3_808
                 end
-            end)
-            coroutine.resume(idleCoroutine)
-
-
-            steppedConnection = game:GetService("RunService").Stepped:Connect(function()
-                if not AnimationActive or not root or EmotePlayingR15 then return end
-
-                local state = humanoid:GetState()
-                local moving = humanoid.MoveDirection.Magnitude > 0
-                local newState
-
-                if state == Enum.HumanoidStateType.Freefall then
-                    newState = "Fall"
-                elseif state == Enum.HumanoidStateType.Jumping then
-                    newState = "Jump"
-                elseif moving then
-                    newState = "Walk"
-                else
-                    newState = "Idle"
-                end
-
-                if newState ~= currentState then
-                    currentState = newState
-                    if not bundle then return end
-
-                    if currentState == "Idle" then
-                        PlayAnimR15(bundle.Idle1)
-                    elseif currentState == "Jump" then
-                        PlayAnimR15(bundle.Jump or bundle.Fall)
-                    elseif currentState == "Fall" then
-                        PlayAnimR15(bundle.Fall)
-                    elseif currentState == "Walk" then
-                        PlayAnimR15(bundle.Run or bundle.Walk)
-                    end
-                end
-            end)
-        end)
-
-
-        loadConfig()
-        Reanimate:CreateButton("R6 Reanimate", function(state)
-                if R15reanimated or plr.Character.Humanoid.Health == 0 then
-                    Message("R15 Reanimate Status:", "Active", 5)
-                    return 
-                end
-                if R6reanimated or plr.Character.Humanoid.Health == 0 then
-                    Message("R6 Reanimate Status:", "Active", 5)
-                    return 
-                end
-                R6reanimated = true
-                if "HaxterFelix is the best" then
-                
-                    local v3_net, v3_808 = Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)    
-                    function getNetlessVelocity(realPartVelocity)
-                        local mag = realPartVelocity.Magnitude
-                        if mag > 0 then
-                            local unit = realPartVelocity.Unit
-                            if (unit.Y > 0.0) or (unit.Y < -0.0) then
-                                return unit * (0.0 / unit.Y)
-                            end
-                        end
-                        return v3_net + realPartVelocity * v3_808
-                    end
-                    local args = {
-        	"Ball"
-        }
-        game:GetService("ReplicatedStorage"):WaitForChild("Ragdoll"):FireServer(unpack(args))
+                local args = {
+    	"Ball"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Ragdoll"):FireServer(unpack(args))
 
 
 
-                    local simradius = "shp" 
-                    local simrad = 0 
-                    local healthHide = false 
-                    local reclaim = true 
+                local simradius = "shp" 
+                local simrad = 0 
+                local healthHide = false 
+                local reclaim = true 
 
 
-                    local novoid = true 
-                    local physp = nil 
+                local novoid = true 
+                local physp = nil 
 
                 local noclipAllParts = false 
                 local antiragdoll = false 
@@ -4868,6 +5000,7 @@ elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId
     end)
 
     Reanimate:CreateDropdown("Built In Animations", BuiltInAnimationValuesR6, function(BuiltInAnimationSR6elected)
+    if not R15reanimated then return end
         if not R6reanimated then
             Message("R6 Reanimate Status:", "False!", 5)
             return
@@ -11118,1955 +11251,3 @@ elseif game.PlaceId == 6884319169 or game.PlaceId == 15546218972 or game.PlaceId
             wait(10)
         end
     end)
-
-elseif game.PlaceId == 11158043705 then 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/Baddies",true))()
-elseif game.PlaceId == 14184086618 then 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/Obby But You're on a Bike",true))()
-elseif game.PlaceId == 111294513233843 then 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/House%20Party%2017%2B%20VC",true))()
-elseif game.PlaceId == 91692552632068 or game.PlaceId == 17590362521 or game.PlaceId == 17707569217 or game.PlaceId == 83091000527113 then 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-Loadstring/refs/heads/main/Spelling%20Bee",true))()
-else
-        local success, vermLib = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-/refs/heads/main/HaxterHub%20UI%20Library")))
-        if not success then
-            warn("Failed to load vermLib: " .. tostring(vermLib))
-            return
-        end
-        local window = vermLib:CreateWindow()
-        local Player = window:CreateTab("Player", "LocalPlayer", "")
-        local Visuals = window:CreateTab("Visuals", "Visuals", "")
-        local Animations = window:CreateTab("Animations", "Animations", "") 
-        local Universal = window:CreateTab("Universal", "Universal", "")
-        local Server = window:CreateTab("Server", "Server", "")
-        local UserInputService = game:GetService("UserInputService")
-        UserInputService = cloneref(game:GetService("UserInputService"))
-        local Players = game:GetService("Players")
-        local RunService = game:GetService("RunService")
-        local plr = Players.LocalPlayer
-        local workspace = game.Workspace
-        local mouse = plr:GetMouse()
-        local flying = false
-        local ctrl = {f = 0, b = 0, l = 0, r = 0}
-        local FlySpeed = 30  
-        local currentAnim = nil
-        local velocityHandlerName = "VelocityHandler"
-        local gyroHandlerName = "GyroHandler"
-        plr.CameraMaxZoomDistance = 800000
-        local TweenService = game:GetService("TweenService")
-        local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
-        local walkSpeed, jumpPower = 16, 60
-        local uis, mode = game:GetService("UserInputService"), ""
-        local R15reanimated = false 
-        local R6reanimated = false 
-        local euler, sin, sine, abs, clamp = CFrame.fromEulerAnglesXYZ, math.sin, 0, math.abs, math.clamp
-        local function cfMul(a, b)
-            return a * b
-        end
-        local function StopAnimTrackss()
-            plr.Character.Animate.Disabled = false
-            local animtrack = plr.Character.Humanoid:GetPlayingAnimationTracks()
-            for _, track in pairs(animtrack) do
-                track:Stop()
-            end
-        end
-
-        local function angles(x, y, z)
-            return CFrame.Angles(x, y, z)
-        end
-
-    local cf, v3 = CFrame.new, Vector3.new
-    local function ToolEsp() 
-        for _, v in pairs(game:GetService("Players"):GetPlayers()) do
-            if v ~= game:GetService("Players").LocalPlayer then
-                local character = v.Character
-                if character and character:FindFirstChild("Head") and character.Head:FindFirstChild("Name") == nil then
-                    local head = character.Head
-                    local a = Instance.new("BillboardGui", head)
-                    a.Name = "Name"
-                    a.AlwaysOnTop = true
-                    a.Size = UDim2.new(8, 0, 1.5, 0)
-                    a.StudsOffsetWorldSpace = Vector3.new(0, 2.635981321334839, 0)
-                    local b = Instance.new("Frame", a)
-                    b.Size = UDim2.new(1, 0, 1, 0)
-                    b.BackgroundTransparency = 1
-                    b.BorderSizePixel = 0
-                    local c = Instance.new("TextLabel", b)
-                    c.Text = v.Name
-                    c.TextColor3 = Color3.fromRGB(125, 125, 125)
-                    c.Size = UDim2.new(1, 0, 0.5, 0)
-                    c.BackgroundTransparency = 1
-                    c.BorderSizePixel = 0
-                    c.TextSize = 12
-                    c.TextStrokeTransparency = 0.7
-                    c.TextScaled = true
-                    c.RichText = true
-                    c.TextWrapped = false
-                end
-            end
-        end
-    end
-    local function ApplyESP() 
-    for _, v in pairs(game:GetService("Players"):GetPlayers()) do
-    if v ~= game:GetService("Players").LocalPlayer then
-    local character = v.Character
-    if character and character:FindFirstChild("HumanoidRootPart") and character.HumanoidRootPart:FindFirstChild("Name") == nil then
-        local HumanoidRootPart = character.HumanoidRootPart
-        local a = Instance.new("BillboardGui", HumanoidRootPart)
-        a.Name = "Name"
-        a.AlwaysOnTop = true
-        a.Size = UDim2.new(8, 0, 1.5, 0)
-        a.StudsOffsetWorldSpace = Vector3.new(0, 2.635981321334839, 0)
-        local b = Instance.new("Frame", a)
-        b.Size = UDim2.new(1, 0, 1, 0)
-        b.BackgroundTransparency = 1
-        b.BorderSizePixel = 0
-        local c = Instance.new("TextLabel", b)
-        c.Text = v.Name
-        c.TextColor3 = Color3.fromRGB(125, 125, 125)
-        c.Size = UDim2.new(1, 0, 0.5, 0)
-        c.BackgroundTransparency = 1
-        c.BorderSizePixel = 0
-        c.TextSize = 12
-        c.TextStrokeTransparency = 0.7
-        c.TextScaled = true
-        c.RichText = true
-        c.TextWrapped = false
-    end
-    end
-    end
-    end
-
-
-
-
-    local playerAddedConnection
-    local characterAddedConnections = {}
-
-    local function ApplyChams(player)
-        
-        if player == game.Players.LocalPlayer then
-            return
-        end
-
-        if player.Character then
-            if player.Character:FindFirstChild("Highlight") == nil then
-                local char = player.Character
-                local highlight = Instance.new("Highlight", char)
-                highlight.FillTransparency = 0.9
-                highlight.FillColor = Color3.fromRGB(20, 37, 135)
-                highlight.OutlineTransparency = 0.6
-            end
-        end
-    end
-
-    Visuals:CreateToggle("Player Chams", function(PlayerChams)
-        getgenv().PlayerChamss = PlayerChams
-
-        if PlayerChamss then
-            
-            playerAddedConnection = Players.PlayerAdded:Connect(function(player)
-                characterAddedConnections[player.UserId] = player.CharacterAdded:Connect(function(character)
-                    ApplyChams(player)
-                end)
-            end)
-
-            
-            for _, player in pairs(Players:GetPlayers()) do
-                characterAddedConnections[player.UserId] = player.CharacterAdded:Connect(function(character)
-                    ApplyChams(player)
-                end)
-                ApplyChams(player)
-            end
-        else
-            
-            if playerAddedConnection then
-                playerAddedConnection:Disconnect()
-                playerAddedConnection = nil
-            end
-
-            for _, player in pairs(Players:GetPlayers()) do
-                if characterAddedConnections[player.UserId] then
-                    characterAddedConnections[player.UserId]:Disconnect()
-                    characterAddedConnections[player.UserId] = nil
-                end
-
-                if player.Character then
-                    local highlight = player.Character:FindFirstChild("Highlight")
-                    if highlight then
-                        highlight:Destroy()
-                    end
-                end
-            end
-        end
-    end)
-
-    Visuals:CreateToggle("Player ESP", function(PlayerESO)
-        getgenv().PlayerESP = PlayerESO
-        while true do
-            if getgenv().PlayerESP then
-                ApplyESP()
-            else
-                for _, v in pairs(game:GetService("Players"):GetPlayers()) do
-                    if v ~= game:GetService("Players").LocalPlayer then
-                        local character = v.Character
-                        if character and character:FindFirstChild("HumanoidRootPart") then
-                            local HumanoidRootPart = character.HumanoidRootPart
-                            local nameGui = HumanoidRootPart:FindFirstChild("Name")
-                            if nameGui then
-                                nameGui:Destroy()
-                            end
-                        end
-                    end
-                end
-            end
-            wait(1) 
-        end
-    end)
-
-    Server:CreateBox("Job ID", "string", function(JobID)
-        JobIDs = JobID
-    end)
-    Server:CreateButton("Join Job ID", function(OPENS) 
-        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId , tostring(JobIDs) )
-    end)
-    Server:CreateButton("Copy Job ID", function(OPENS) 
-    local placeId = game.JobId
-    setclipboard(tostring(placeId)) 
-    end)
-    Server:CreateButton("Copy Game ID", function(OPENS) 
-        local gameID = game.GameId
-        setclipboard(tostring(gameID)) 
-        end)
-    Server:CreateButton("Server Hop", function(OPENS) 
-    local PlaceID = game.PlaceId
-    local AllIDs = {}
-    local foundAnything = ""
-    local actualHour = os.date("!*t").hour
-    local Deleted = false
-
-    function TPReturner()
-    local Site;
-    if foundAnything == "" then
-        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
-    else
-        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
-    end
-    local ID = ""
-    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
-        foundAnything = Site.nextPageCursor
-    end
-    local num = 50;
-    for i,v in pairs(Site.data) do
-        local Possible = true
-        ID = tostring(v.id)
-        if tonumber(v.maxPlayers) > tonumber(v.playing) then
-            for _,Existing in pairs(AllIDs) do
-                if num ~= 0 then
-                    if ID == tostring(Existing) then
-                        Possible = false
-                    end
-                else
-                    if tonumber(actualHour) ~= tonumber(Existing) then
-                        local delFile = pcall(function()
-
-                            AllIDs = {}
-                            table.insert(AllIDs, actualHour)
-                        end)
-                    end
-                end
-                num = num + 1
-            end
-            if Possible == true then
-                table.insert(AllIDs, ID)
-                wait()
-                pcall(function()
-
-                    wait()
-                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
-                end)
-                wait(4)
-            end
-        end
-    end
-    end
-
-    function Teleport()
-    while wait() do
-        pcall(function()
-            TPReturner()
-            if foundAnything ~= "" then
-                TPReturner()
-            end
-        end)
-    end
-    end
-
-    Teleport()
-    end)
-
-
-    local ServerList = {}
-
-
-    local function getCurrentTime()
-        return os.date("%Y-%m-%d %H:%M:%S")  
-    end
-
-
-    local function saveServerInfo(gameName, jobID, gameID)
-        local currentTime = getCurrentTime()
-
-
-        if #gameName > 7 then
-            gameName = gameName:sub(1, 7) .. "..."
-        end
-
-
-        local serverInfoToStore = string.format("%s : %s : %s : %s", currentTime, gameName, jobID, gameID)
-
-
-        local serverInfoForDropdown = string.format("%s : %s", currentTime, gameName)
-
-
-        local existingServers = {}
-        local success, err = pcall(function()
-            if isfile("saved_servers.txt") then  
-                local data = readfile("saved_servers.txt")
-                for line in data:gmatch("[^\r\n]+") do
-                    table.insert(existingServers, line)
-                end
-            else
-
-                writefile("saved_seasdrvers.txt", "")
-
-            end
-        end)
-
-        if not success then
-
-            return false
-        end
-
-
-        for _, info in ipairs(existingServers) do
-            if info:find(jobID, 1, true) then  
-                return false  
-            end
-        end
-
-
-        table.insert(ServerList, serverInfoForDropdown)  
-        table.insert(existingServers, serverInfoToStore)  
-
-        local successWrite, errWrite = pcall(function()
-            writefile("saved_servers.txt", table.concat(existingServers, "\n"))
-        end)
-
-        if not successWrite then
-
-            return false
-        else
-
-            return true
-        end
-    end
-
-
-    local function getCurrentGameInfo()
-        local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-        local jobID = game.JobId
-        local gameID = game.PlaceId
-
-        return gameName, jobID, gameID
-    end
-
-
-    local function removeDuplicates()
-        local uniqueServers = {}
-        local seen = {}
-
-        for _, info in ipairs(ServerList) do
-            if not seen[info] then
-                seen[info] = true
-                table.insert(uniqueServers, info)
-            end
-        end
-
-        ServerList = uniqueServers
-    end
-
-
-    local function getJobIDAndGameIDByTimestamp(timestamp)
-        local existingServers = {}
-
-        local success, err = pcall(function()
-            if isfile("saved_servers.txt") then  
-                local data = readfile("saved_servers.txt")
-                for line in data:gmatch("[^\r\n]+") do
-                    table.insert(existingServers, line)
-                end
-            end
-        end)
-
-        if not success then
-
-            return nil, nil
-        end
-
-        for _, info in ipairs(existingServers) do
-
-            local storedTimestamp, storedJobID, storedGameID = info:match("^(%d%d%d%d%-%d%d%-%d%d %d%d:%d%d:%d%d) : [^:]+ : ([^:]+) : (%d+)$")
-
-
-
-
-            if storedTimestamp == timestamp then
-                return storedJobID, storedGameID
-            end
-        end
-
-        return nil, nil  
-    end
-
-    local dropdown = Server:CreateDropdown2("Saved Servers", ServerList, function(CurrentServerListOption)
-        local selectedTimestamp = CurrentServerListOption:match("^(%d%d%d%d%-%d%d%-%d%d %d%d:%d%d:%d%d)")
-
-        if selectedTimestamp then
-            local jobID, gameID = getJobIDAndGameIDByTimestamp(selectedTimestamp)
-
-            if jobID and gameID then
-                local success, err = pcall(function()
-                    game:GetService("TeleportService"):TeleportToPlaceInstance(tonumber(gameID), jobID)
-                end)
-                if not success then
-                    warn("Teleportation failed: " .. err)
-                end
-            end
-        end
-    end)
-
-
-    local function refreshDropdown()
-        dropdown:Refresh(ServerList)
-    end
-
-
-    local function loadSavedServers()
-        local success, err = pcall(function()
-            if isfile("saved_servers.txt") then  
-                local data = readfile("saved_servers.txt")
-                for line in data:gmatch("[^\r\n]+") do
-
-                    local timestamp, gameName = line:match("^(%S+ %S+) : ([^:]+)")
-                    if timestamp and gameName then
-                        table.insert(ServerList, string.format("%s : %s", timestamp, gameName))
-                    end
-                end
-            else
-
-                writefile("saved_servers.txt", "")
-
-            end
-        end)
-
-        if not success then
-
-        else
-
-            removeDuplicates()  
-        end
-
-        refreshDropdown()
-    end
-
-    local function saveCurrentGameInfo()
-        local gameName, jobID, gameID = getCurrentGameInfo()
-        saveServerInfo(gameName, jobID, gameID)
-    end
-
-    loadSavedServers()
-    removeDuplicates() 
-    saveCurrentGameInfo() 
-
-    local IdleAnimations = {
-        {Name = "Wicked Popular Idle", ID1 = "http://www.roblox.com/asset/?id=118832222982049", ID2 = "http://www.roblox.com/asset/?id=76049494037641"},
-        {Name = "Berry Avenue Idle", ID1 = "http://www.roblox.com/asset/?id=4211217646", ID2 = "http://www.roblox.com/asset/?id=4211218409"},
-        {Name = "Catwalk Glam Idle", ID1 = "http://www.roblox.com/asset/?id=133806214992291", ID2 = "http://www.roblox.com/asset/?id=94970088341563"},
-        {Name = "NFL Animation Idle", ID1 = "http://www.roblox.com/asset/?id=92080889861410", ID2 = "http://www.roblox.com/asset/?id=74451233229259"},
-        {Name = "Bold Animation Idle", ID1 = "http://www.roblox.com/asset/?id=16738333868", ID2 = "http://www.roblox.com/asset/?id=16738334710"},
-        {Name = "Adidas Sports Idle", ID1 = "http://www.roblox.com/asset/?id=18537376492", ID2 = "http://www.roblox.com/asset/?id=18537371272"},
-        {Name = "No Boundaries Idle", ID1 = "http://www.roblox.com/asset/?id=18747067405", ID2 = "http://www.roblox.com/asset/?id=18747063918"},
-        {Name = "Vampire Idle", ID1 = "http://www.roblox.com/asset/?id=1083445855", ID2 = "http://www.roblox.com/asset/?id=1083450166"},
-        {Name = "Hero Idle", ID1 = "http://www.roblox.com/asset/?id=616111295", ID2 = "http://www.roblox.com/asset/?id=616113536"},
-        {Name = "Zombie Idle", ID1 = "http://www.roblox.com/asset/?id=616158929", ID2 = "http://www.roblox.com/asset/?id=616160636"},
-        {Name = "Mage Idle", ID1 = "http://www.roblox.com/asset/?id=707742142", ID2 = "http://www.roblox.com/asset/?id=707855907"},
-        {Name = "Levitation Idle", ID1 = "http://www.roblox.com/asset/?id=616006778", ID2 = "http://www.roblox.com/asset/?id=616008087"},
-        {Name = "Elder Idle", ID1 = "http://www.roblox.com/asset/?id=845397899", ID2 = "http://www.roblox.com/asset/?id=845400520"},
-        {Name = "Astronaut Idle", ID1 = "http://www.roblox.com/asset/?id=891621366", ID2 = "http://www.roblox.com/asset/?id=891633237"},
-        {Name = "Ninja Idle", ID1 = "http://www.roblox.com/asset/?id=656117400", ID2 = "http://www.roblox.com/asset/?id=656118341"},
-        {Name = "Werewolf Idle", ID1 = "http://www.roblox.com/asset/?id=1083195517", ID2 = "http://www.roblox.com/asset/?id=1083214717"},
-        {Name = "Cartoon Idle", ID1 = "http://www.roblox.com/asset/?id=742637544", ID2 = "http://www.roblox.com/asset/?id=742638445"},
-        {Name = "Pirate Idle", ID1 = "http://www.roblox.com/asset/?id=750781874", ID2 = "http://www.roblox.com/asset/?id=750782770"},
-        {Name = "Sneaky Idle", ID1 = "http://www.roblox.com/asset/?id=1132473842", ID2 = "http://www.roblox.com/asset/?id=1132477671"},
-        {Name = "Toy Idle", ID1 = "http://www.roblox.com/asset/?id=782841498", ID2 = "http://www.roblox.com/asset/?id=782845736"},
-        {Name = "Knight Idle", ID1 = "http://www.roblox.com/asset/?id=657595757", ID2 = "http://www.roblox.com/asset/?id=657568135"},
-        {Name = "Confident Idle", ID1 = "http://www.roblox.com/asset/?id=1069977950", ID2 = "http://www.roblox.com/asset/?id=1069987858"},
-        {Name = "PopStar Idle", ID1 = "http://www.roblox.com/asset/?id=1212900985", ID2 = "http://www.roblox.com/asset/?id=1212900985"},
-        {Name = "Princess Idle", ID1 = "http://www.roblox.com/asset/?id=941003647", ID2 = "http://www.roblox.com/asset/?id=941013098"},
-        {Name = "Cowboy Idle", ID1 = "http://www.roblox.com/asset/?id=1014390418", ID2 = "http://www.roblox.com/asset/?id=1014398616"},
-        {Name = "Patrol Idle", ID1 = "http://www.roblox.com/asset/?id=1149612882", ID2 = "http://www.roblox.com/asset/?id=1150842221"},
-        {Name = "Edited Zombie Idle", ID1 = "http://www.roblox.com/asset/?id=3489171152", ID2 = "http://www.roblox.com/asset/?id=3489171152"},
-    }
-
-    local IdleList = {}
-
-
-    for _, anim in ipairs(IdleAnimations) do
-        table.insert(IdleList, anim.Name)
-    end
-
-    local selectedAnimID1, selectedAnimID2
-
-    local dropdown = Animations:CreateDropdown("Animations", IdleList, function(CurrentIdleOption)
-        local function StopAnim()
-            plr.Character.Animate.Disabled = false
-            local animtrack = plr.Character.Humanoid:GetPlayingAnimationTracks()
-            for _, track in pairs(animtrack) do
-                track:Stop()
-            end
-        end
-
-    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-                Message("Error!", "You're in R6", 5)
-    return end
-        StopAnim()
-        plr.Character.Animate.Disabled = true
-
-
-        for _, anim in ipairs(IdleAnimations) do
-            if anim.Name == CurrentIdleOption then
-                selectedAnimID1 = anim.ID1
-                selectedAnimID2 = anim.ID2
-                break
-            end
-        end
-
-
-        plr.Character.Animate.idle.Animation1.AnimationId = selectedAnimID1
-        plr.Character.Animate.idle.Animation2.AnimationId = selectedAnimID2
-        plr.Character.Animate.Disabled = false
-        plr.Character.Humanoid:ChangeState(3)
-
-
-    end)
-
-    Animations:CreateToggle("Auto Idle", function(AutoIdle)
-            if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-            
-    return end
-        getgenv().AutoIdles = AutoIdle
-
-
-        local function onCharacterAdded(character)
-            if selectedAnimID1 and selectedAnimID2 then
-                if R6reanimated then return end
-                    character.Animate.idle.Animation1.AnimationId = selectedAnimID1
-                    character.Animate.idle.Animation2.AnimationId = selectedAnimID2
-                    character.Animate.Disabled = false
-            end
-        end
-
-
-        plr.CharacterAdded:Connect(onCharacterAdded)
-
-
-        if plr.Character then
-            onCharacterAdded(plr.Character)
-        end
-
-        while true do
-            wait(0)
-            if not getgenv().AutoIdles then
-                _G.AutoIdlesss = false
-                return
-            end
-
-            _G.AutoIdlesss = true
-            local AutoIdlessss = nil
-
-            AutoIdlessss = RunService.Stepped:Connect(function()
-                task.spawn(function()
-                    if selectedAnimID1 and selectedAnimID2 then
-                        if plr.Character then
-                            if R6reanimated then return end
-
-                            if not (plr.Character.Animate.idle.Animation1.AnimationId == selectedAnimID1 or 
-                                     plr.Character.Animate.idle.Animation2.AnimationId == selectedAnimID2) then
-                                plr.Character.Animate.idle.Animation1.AnimationId = selectedAnimID1
-                                plr.Character.Animate.idle.Animation2.AnimationId = selectedAnimID2
-                                plr.Character.Animate.Disabled = false
-                                plr.Character.Humanoid:ChangeState(3)
-                            end
-                        end
-                    end
-                end)
-            end)
-
-            repeat task.wait() until _G.AutoIdlesss == false
-            AutoIdlessss:Disconnect()
-        end
-    end)
-
-
-
-
-
-    local WalkAnimations = {
-        {Name = "Wicked Walk", ID = "http://www.roblox.com/asset/?id=92072849924640"},
-        {Name = "Berry Avenue Walk", ID = "http://www.roblox.com/asset/?id=4211223236"},
-        {Name = "Catwalk Glam Walk", ID = "http://www.roblox.com/asset/?id=109168724482748"},
-        {Name = "NFL Walk", ID = "http://www.roblox.com/asset/?id=110358958299415"},
-        {Name = "Bold Walk", ID = "http://www.roblox.com/asset/?id=16738340646"},
-        {Name = "Adidas Sports Walk", ID = "http://www.roblox.com/asset/?id=18537392113"},
-        {Name = "No Boundaries Walk", ID = "http://www.roblox.com/asset/?id=18747074203"},
-        {Name = "Vampire Walk", ID = "http://www.roblox.com/asset/?id=1083473930"},
-        {Name = "Hero Walk", ID = "http://www.roblox.com/asset/?id=616122287"},
-        {Name = "Zombie Walk", ID = "http://www.roblox.com/asset/?id=616168032"},
-        {Name = "Mage Walk", ID = "http://www.roblox.com/asset/?id=707897309"},
-        {Name = "Levitation Walk", ID = "http://www.roblox.com/asset/?id=616010382"}, 
-        {Name = "Elder Walk", ID = "http://www.roblox.com/asset/?id=845403856"}, 
-        {Name = "Astronaut Walk", ID = "http://www.roblox.com/asset/?id=891667138"},
-        {Name = "Ninja Walk", ID = "http://www.roblox.com/asset/?id=656121766"},
-        {Name = "Werewolf Walk", ID = "http://www.roblox.com/asset/?id=1083178339"},
-        {Name = "Cartoon Walk", ID = "http://www.roblox.com/asset/?id=742640026"},
-        {Name = "Pirate Walk", ID = "http://www.roblox.com/asset/?id=750785693"},
-        {Name = "Sneaky Walk", ID = "http://www.roblox.com/asset/?id=1132510133"},
-        {Name = "Toy Walk", ID = "http://www.roblox.com/asset/?id=782843345"},
-        {Name = "Knight Walk", ID = "http://www.roblox.com/asset/?id=657552124"},
-        {Name = "Confident Walk", ID = "http://www.roblox.com/asset/?id=1070017263"},
-        {Name = "PopStar Walk", ID = "http://www.roblox.com/asset/?id=1212980338"},
-        {Name = "Princess Walk", ID = "http://www.roblox.com/asset/?id=941028902"},
-        {Name = "Cowboy Walk", ID = "http://www.roblox.com/asset/?id=1014421541"},
-        {Name = "Patrol Walk", ID = "http://www.roblox.com/asset/?id=1151231493"},
-        {Name = "Edited Zombie Walk", ID = "http://www.roblox.com/asset/?id=3489174223"},
-    }
-
-
-    local WalkList = {}
-
-
-    for _, anim in ipairs(WalkAnimations) do
-        table.insert(WalkList, anim.Name)
-    end
-
-    local selectedAnimID
-
-    local dropdown = Animations:CreateDropdown("Walk Animations", WalkList, function(CurrentWalkOption)
-        local function StopAnim()
-            plr.Character.Animate.Disabled = false
-            local animtrack = plr.Character.Humanoid:GetPlayingAnimationTracks()
-            for _, track in pairs(animtrack) do
-                track:Stop()
-            end
-        end
-
-    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-                Message("Error!", "You're in R6", 5)
-    return end
-        StopAnim()
-        plr.Character.Animate.Disabled = true
-
-
-        for _, anim in ipairs(WalkAnimations) do
-            if anim.Name == CurrentWalkOption then
-                selectedAnimID = anim.ID
-                break
-            end
-        end
-
-
-        plr.Character.Animate.walk:FindFirstChildOfClass("Animation").AnimationId = selectedAnimID
-        plr.Character.Animate.run:FindFirstChildOfClass("Animation").AnimationId = selectedAnimID 
-        plr.Character.Animate.Disabled = false
-    end)
-
-    Animations:CreateToggle("Auto Walk", function(AutoWalk)
-            if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-            
-    return end
-        getgenv().AutoWalks = AutoWalk
-
-
-        local function onCharacterAdded(character)
-            local humanoid = character:WaitForChild("Humanoid")
-
-
-            if humanoid then
-            if R6reanimated then return end
-
-                if character.Animate.idle.Animation1.AnimationId ~= selectedAnimID then
-                    character.Animate.walk.WalkAnim.AnimationId = selectedAnimID
-                end
-            end
-        end
-
-
-        plr.CharacterAdded:Connect(onCharacterAdded)
-
-
-        if plr.Character then
-            onCharacterAdded(plr.Character)
-        end
-
-        while true do
-            wait(0)
-            if not getgenv().AutoWalks then
-                _G.AutoWalks = false
-                return
-            end
-
-            _G.AutoWalks = true
-            local AutoWalkConnection = nil
-
-            AutoWalkConnection = RunService.Stepped:Connect(function()
-                task.spawn(function()
-                    if plr.Character then
-                        if selectedAnimID then
-            if R6reanimated then return end
-                            if not (plr.Character.Animate.idle.Animation1.AnimationId == selectedAnimID) then
-                                plr.Character.Animate.walk:FindFirstChildOfClass("Animation").AnimationId = selectedAnimID
-                            end
-                        end
-                    end
-                end)
-            end)
-
-            repeat task.wait() until _G.AutoWalks == false
-            AutoWalkConnection:Disconnect()
-        end
-    end)
-    local RunAnimations = {
-        {Name = "Wicked Run", ID = "http://www.roblox.com/asset/?id=72301599441680"},
-        {Name = "Berry Avenue Run", ID = "http://www.roblox.com/asset/?id=4211220381"},
-        {Name = "Catwalk Glam Run", ID = "http://www.roblox.com/asset/?id=117333533048078"},
-        {Name = "NFL Run", ID = "http://www.roblox.com/asset/?id=117333533048078"},
-        {Name = "Bold Run", ID = "http://www.roblox.com/asset/?id=16738337225"},
-        {Name = "Adidas Sports Run", ID = "http://www.roblox.com/asset/?id=18537384940"},
-        {Name = "No Boundaries Run", ID = "http://www.roblox.com/asset/?id=18747070484"},
-        {Name = "Vampire Run", ID = "http://www.roblox.com/asset/?id=1083462077"},
-        {Name = "Hero Run", ID = "http://www.roblox.com/asset/?id=616117076"},
-        {Name = "Zombie Run", ID = "http://www.roblox.com/asset/?id=616163682"},
-        {Name = "Mage Run", ID = "http://www.roblox.com/asset/?id=707861613"},
-        {Name = "Levitation Run", ID = "http://www.roblox.com/asset/?id=616013216"}, 
-        {Name = "Elder Run", ID = "http://www.roblox.com/asset/?id=845386501"}, 
-        {Name = "Astronaut Run", ID = "http://www.roblox.com/asset/?id=891636393"},
-        {Name = "Ninja Run", ID = "http://www.roblox.com/asset/?id=656118852"},
-        {Name = "Werewolf Run", ID = "http://www.roblox.com/asset/?id=1083216690"},
-        {Name = "Cartoon Run", ID = "http://www.roblox.com/asset/?id=742638842"},
-        {Name = "Pirate Run", ID = "http://www.roblox.com/asset/?id=750783738"},
-        {Name = "Sneaky Run", ID = "http://www.roblox.com/asset/?id=1132494274"},
-        {Name = "Toy Run", ID = "http://www.roblox.com/asset/?id=782842708"},
-        {Name = "Knight Run", ID = "http://www.roblox.com/asset/?id=657564596"},
-        {Name = "Confident Run", ID = "http://www.roblox.com/asset/?id=1070001516"},
-        {Name = "PopStar Run", ID = "http://www.roblox.com/asset/?id=1212980348"},
-        {Name = "Princess Run", ID = "http://www.roblox.com/asset/?id=941015281"},
-        {Name = "Cowboy Run", ID = "http://www.roblox.com/asset/?id=1014401683"},
-        {Name = "Patrol Run", ID = "http://www.roblox.com/asset/?id=1150967949"},
-        {Name = "Edited Zombie Run", ID = "http://www.roblox.com/asset/?id=3489173414"},
-    }
-
-    local RunList = {}
-
-
-    for _, anim in ipairs(RunAnimations) do
-        table.insert(RunList, anim.Name)
-    end
-
-    local selectedRunAnimID
-
-    local dropdown = Animations:CreateDropdown("Run Animations", RunList, function(CurrentRunOption)
-        local function StopAnim()
-            plr.Character.Animate.Disabled = false
-            local animtrack = plr.Character.Humanoid:GetPlayingAnimationTracks()
-            for _, track in pairs(animtrack) do
-                track:Stop()
-            end
-        end
-
-    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-                Message("Error!", "You're in R6", 5)
-    return end
-        StopAnim()
-        plr.Character.Animate.Disabled = true
-
-
-        for _, anim in ipairs(RunAnimations) do
-            if anim.Name == CurrentRunOption then
-                selectedRunAnimID = anim.ID
-                break
-            end
-        end
-
-
-        plr.Character.Animate.run:FindFirstChildOfClass("Animation").AnimationId = selectedRunAnimID
-        plr.Character.Animate.Disabled = false
-
-    end)
-
-    Animations:CreateToggle("Auto Run", function(AutoRun)
-            if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-            
-    return end
-        getgenv().AutoRuns = AutoRun
-
-
-        local function onCharacterAdded(character)
-            local humanoid = character:WaitForChild("Humanoid")
-
-
-            if humanoid then
-            if R6reanimated then return end
-
-                if character.Animate.idle.Animation1.AnimationId ~= selectedRunAnimID then
-                    character.Animate.run.RunAnim.AnimationId = selectedRunAnimID
-                end
-            end
-        end
-
-
-        plr.CharacterAdded:Connect(onCharacterAdded)
-
-
-        if plr.Character then
-            onCharacterAdded(plr.Character)
-        end
-
-        while true do
-            wait(0)
-            if not getgenv().AutoRuns then
-                _G.AutoRuns = false
-                return
-            end
-
-            _G.AutoRuns = true
-            local AutoRunConnection = nil
-            AutoRunConnection = RunService.Stepped:Connect(function()
-                task.spawn(function()
-                    if plr.Character then
-                        if selectedRunAnimID then
-            if R6reanimated then return end
-                            if not (plr.Character.Animate.idle.Animation1.AnimationId == selectedRunAnimID) then
-                                plr.Character.Animate.run:FindFirstChildOfClass("Animation").AnimationId = selectedRunAnimID
-                            end
-                        end
-                    end
-                end)
-            end)
-
-            repeat task.wait() until _G.AutoRuns == false
-            AutoRunConnection:Disconnect()
-        end
-    end)
-
-    local JumpAnimations = {
-        {Name = "Wicked Jump", ID = "http://www.roblox.com/asset/?id=104325245285198"},
-        {Name = "Berry Avenue Jump", ID = "http://www.roblox.com/asset/?id=4211219390"},
-        {Name = "Catwalk Glam Jump", ID = "http://www.roblox.com/asset/?id=116936326516985"},
-        {Name = "NFL Jump", ID = "http://www.roblox.com/asset/?id=119846112151352"},
-        {Name = "Bold Jump", ID = "http://www.roblox.com/asset/?id=16738336650"},
-        {Name = "Adidas Sports Jump", ID = "http://www.roblox.com/asset/?id=18537380791"},
-        {Name = "No Boundaries Jump", ID = "http://www.roblox.com/asset/?id=18747069148"},
-        {Name = "Vampire Jump", ID = "http://www.roblox.com/asset/?id=1083455352"},
-        {Name = "Hero Jump", ID = "http://www.roblox.com/asset/?id=616115533"},
-        {Name = "Zombie Jump", ID = "http://www.roblox.com/asset/?id=616161997"},
-        {Name = "Mage Jump", ID = "http://www.roblox.com/asset/?id=707853694"},
-        {Name = "Levitation Jump", ID = "http://www.roblox.com/asset/?id=616008936"}, 
-        {Name = "Elder Jump", ID = "http://www.roblox.com/asset/?id=845398858"}, 
-        {Name = "Astronaut Jump", ID = "http://www.roblox.com/asset/?id=891627522"},
-        {Name = "Ninja Jump", ID = "http://www.roblox.com/asset/?id=656117878"},
-        {Name = "Werewolf Jump", ID = "http://www.roblox.com/asset/?id=1083218792"},
-        {Name = "Cartoon Jump", ID = "http://www.roblox.com/asset/?id=742638842"},
-        {Name = "Pirate Jump", ID = "http://www.roblox.com/asset/?id=750782230"},
-        {Name = "Sneaky Jump", ID = "http://www.roblox.com/asset/?id=1132489853"},
-        {Name = "Toy Jump", ID = "http://www.roblox.com/asset/?id=782847020"},
-        {Name = "Knight Jump", ID = "http://www.roblox.com/asset/?id=658409194"},
-        {Name = "Confident Jump", ID = "http://www.roblox.com/asset/?id=1069984524"},
-        {Name = "PopStar Jump", ID = "http://www.roblox.com/asset/?id=1212954642"},
-        {Name = "Princess Jump", ID = "http://www.roblox.com/asset/?id=941008832"},
-        {Name = "Cowboy Jump", ID = "http://www.roblox.com/asset/?id=1014394726"},
-        {Name = "Patrol Jump", ID = "http://www.roblox.com/asset/?id=1150944216"},
-        {Name = "Edited Zombie Jump", ID = "http://www.roblox.com/asset/?id=616161997"},
-    }
-
-    local JumpList = {}
-
-
-    for _, anim in ipairs(JumpAnimations) do
-        table.insert(JumpList, anim.Name)
-    end
-
-    local selectedJumpAnimID
-
-    local dropdown = Animations:CreateDropdown("Jump Animations", JumpList, function(CurrentJumpOption)
-        local function StopAnim()
-            plr.Character.Animate.Disabled = false
-            local animtrack = plr.Character.Humanoid:GetPlayingAnimationTracks()
-            for _, track in pairs(animtrack) do
-                track:Stop()
-            end
-        end
-
-    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-                Message("Error!", "You're in R6", 5)
-    return end
-        StopAnim()
-        plr.Character.Animate.Disabled = true
-
-
-        for _, anim in ipairs(JumpAnimations) do
-            if anim.Name == CurrentJumpOption then
-                selectedJumpAnimID = anim.ID
-                break
-            end
-        end
-
-
-        plr.Character.Animate.jump:FindFirstChildOfClass("Animation").AnimationId = selectedJumpAnimID
-        plr.Character.Animate.Disabled = false
-
-    end)
-
-    Animations:CreateToggle("Auto Jump", function(AutoJump)
-            if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-            
-    return end
-        getgenv().AutoJumps = AutoJump
-
-
-        local function onCharacterAdded(character)
-            local humanoid = character:WaitForChild("Humanoid")
-
-
-            if humanoid then
-            if R6reanimated then return end
-
-                if character.Animate.idle.Animation1.AnimationId ~= selectedJumpAnimID then
-                    character.Animate.jump:FindFirstChildOfClass("Animation").AnimationId = selectedJumpAnimID
-                end
-            end
-        end
-
-
-        plr.CharacterAdded:Connect(onCharacterAdded)
-
-
-        if plr.Character then
-            onCharacterAdded(plr.Character)
-        end
-
-        while true do
-            wait(0)
-            if not getgenv().AutoJumps then
-                _G.AutoJumps = false
-                return
-            end
-
-            _G.AutoJumps = true
-            local AutoJumpConnection = nil
-
-            AutoJumpConnection = RunService.Stepped:Connect(function()
-                task.spawn(function()
-                    if plr.Character then
-                        if selectedJumpAnimID then
-                            if R6reanimated then return end
-                            if not (plr.Character.Animate.idle.Animation1.AnimationId == selectedJumpAnimID) then
-                                plr.Character.Animate.jump:FindFirstChildOfClass("Animation").AnimationId = selectedJumpAnimID
-                            end
-                        end
-                    end
-                end)
-            end)
-
-            repeat task.wait() until _G.AutoJumps == false
-            AutoJumpConnection:Disconnect()
-        end
-    end)
-
-    local ClimbAnimations = {
-        {Name = "Wicked Climb", ID = "http://www.roblox.com/asset/?id=131326830509784"},
-        {Name = "Berry Avenue Climb", ID = "http://www.roblox.com/asset/?id=4211214992"},
-        {Name = "Catwalk Glam Climb", ID = "http://www.roblox.com/asset/?id=119377220967554"},
-        {Name = "NFL Climb", ID = "http://www.roblox.com/asset/?id=134630013742019"},
-        {Name = "Bold Climb", ID = "http://www.roblox.com/asset/?id=16738332169"},
-        {Name = "Adidas Sports Climb", ID = "http://www.roblox.com/asset/?id=18537363391"},
-        {Name = "No Boundaries Climb", ID = "http://www.roblox.com/asset/?id=18747060903"},
-        {Name = "Vampire Climb", ID = "http://www.roblox.com/asset/?id=1083439238"},
-        {Name = "Hero Climb", ID = "http://www.roblox.com/asset/?id=616104706"},
-        {Name = "Zombie Climb", ID = "http://www.roblox.com/asset/?id=616156119"},
-        {Name = "Mage Climb", ID = "http://www.roblox.com/asset/?id=707826056"},
-        {Name = "Levitation Climb", ID = "http://www.roblox.com/asset/?id=616003713"}, 
-        {Name = "Elder Climb", ID = "http://www.roblox.com/asset/?id=845392038"}, 
-        {Name = "Astronaut Climb", ID = "http://www.roblox.com/asset/?id=891609353"},
-        {Name = "Ninja Climb", ID = "http://www.roblox.com/asset/?id=656114359"},
-        {Name = "Werewolf Climb", ID = "http://www.roblox.com/asset/?id=1083182000"},
-        {Name = "Cartoon Climb", ID = "http://www.roblox.com/asset/?id=742636889"},
-        {Name = "Pirate Climb", ID = "http://www.roblox.com/asset/?id=750779899"},
-        {Name = "Sneaky Climb", ID = "http://www.roblox.com/asset/?id=1132461372"},
-        {Name = "Toy Climb", ID = "http://www.roblox.com/asset/?id=782843869"},
-        {Name = "Knight Climb", ID = "http://www.roblox.com/asset/?id=658360781"},
-        {Name = "Confident Climb", ID = "http://www.roblox.com/asset/?id=1069946257"},
-        {Name = "PopStar Climb", ID = "http://www.roblox.com/asset/?id=1213044953"},
-        {Name = "Princess Climb", ID = "http://www.roblox.com/asset/?id=940996062"},
-        {Name = "Cowboy Climb", ID = "http://www.roblox.com/asset/?id=1014380606"},
-        {Name = "Patrol Climb", ID = "http://www.roblox.com/asset/?id=1148811837"},
-        {Name = "Edited Zombie Climb", ID = "http://www.roblox.com/asset/?id=616156119"},
-    }
-
-    local ClimbList = {}
-
-
-    for _, anim in ipairs(ClimbAnimations) do
-        table.insert(ClimbList, anim.Name)
-    end
-
-    local selectedClimbAnimID
-
-    local dropdown = Animations:CreateDropdown("Climb Animations", ClimbList, function(CurrentClimbOption)
-        local function StopAnim()
-            plr.Character.Animate.Disabled = false
-            local animtrack = plr.Character.Humanoid:GetPlayingAnimationTracks()
-            for _, track in pairs(animtrack) do
-                track:Stop()
-            end
-        end
-
-    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-                Message("Error!", "You're in R6", 5)
-    return end
-        StopAnim()
-        plr.Character.Animate.Disabled = true
-
-
-        for _, anim in ipairs(ClimbAnimations) do
-            if anim.Name == CurrentClimbOption then
-                selectedClimbAnimID = anim.ID
-                break
-            end
-        end
-
-
-        plr.Character.Animate.climb.ClimbAnim.AnimationId = selectedClimbAnimID
-        plr.Character.Animate.Disabled = false
-
-    end)
-
-    Animations:CreateToggle("Auto Climb", function(AutoClimb)
-            if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-            
-    return end
-        getgenv().AutoClimbs = AutoClimb
-
-
-        local function onCharacterAdded(character)
-            local humanoid = character:WaitForChild("Humanoid")
-
-
-            if humanoid then
-            if R6reanimated then return end
-
-                    if character.Animate.idle.Animation1.AnimationId ~= selectedClimbAnimID then
-                        character.Animate.climb.ClimbAnim.AnimationId = selectedClimbAnimID
-                    end
-                end
-            end
-
-        
-        plr.CharacterAdded:Connect(onCharacterAdded)
-
-        
-        if plr.Character then
-            onCharacterAdded(plr.Character)
-        end
-
-        if not getgenv().AutoClimbs then
-            _G.AutoClimbs = false
-            return
-        end
-
-        _G.AutoClimbs = true
-
-        local AutoClimbConnection = nil
-
-        AutoClimbConnection = RunService.Stepped:Connect(function()
-            task.spawn(function()
-                if plr.Character then
-                    if selectedClimbAnimID then
-                        if R6reanimated then return end
-                        if not (plr.Character.Animate.idle.Animation1.AnimationId == selectedClimbAnimID) then
-                            plr.Character.Animate.climb.ClimbAnim.AnimationId = selectedClimbAnimID
-                        end
-                    end
-                end
-            end)
-        end)
-
-        repeat task.wait() until _G.AutoClimbs == false
-        AutoClimbConnection:Disconnect()
-    end)
-
-
-    local FallAnimations = {
-        {Name = "Wicked Fall", ID = "http://www.roblox.com/asset/?id=121152442762481"},
-        {Name = "Berry Avenue Fall", ID = "http://www.roblox.com/asset/?id=4211216152"},
-        {Name = "Catwalk Glam Fall", ID = "http://www.roblox.com/asset/?id=92294537340807"},
-        {Name = "NFL Fall", ID = "http://www.roblox.com/asset/?id=129773241321032"},
-        {Name = "Bold Fall", ID = "http://www.roblox.com/asset/?id=16738333171"},
-        {Name = "Adidas Sports Fall", ID = "http://www.roblox.com/asset/?id=18537367238"},
-        {Name = "No Boundaries Fall", ID = "http://www.roblox.com/asset/?id=18747062535"},
-        {Name = "Vampire Fall", ID = "http://www.roblox.com/asset/?id=1083443587"},
-        {Name = "Hero Fall", ID = "http://www.roblox.com/asset/?id=616108001"},
-        {Name = "Zombie Fall", ID = "http://www.roblox.com/asset/?id=616157476"},
-        {Name = "Mage Fall", ID = "http://www.roblox.com/asset/?id=707829716"},
-        {Name = "Levitation Fall", ID = "http://www.roblox.com/asset/?id=616005863"},
-        {Name = "Elder Fall", ID = "http://www.roblox.com/asset/?id=845396048"},
-        {Name = "Astronaut Fall", ID = "http://www.roblox.com/asset/?id=891617961"},
-        {Name = "Ninja Fall", ID = "http://www.roblox.com/asset/?id=656115606"},
-        {Name = "Werewolf Fall", ID = "http://www.roblox.com/asset/?id=1083189019"},
-        {Name = "Cartoon Fall", ID = "http://www.roblox.com/asset/?id=742637151"},
-        {Name = "Pirate Fall", ID = "http://www.roblox.com/asset/?id=750780242"},
-        {Name = "Sneaky Fall", ID = "http://www.roblox.com/asset/?id=1132469004"},
-        {Name = "Toy Fall", ID = "http://www.roblox.com/asset/?id=782846423"},
-        {Name = "Knight Fall", ID = "http://www.roblox.com/asset/?id=657600338"},
-        {Name = "Confident Fall", ID = "http://www.roblox.com/asset/?id=1069973677"},
-        {Name = "PopStar Fall", ID = "http://www.roblox.com/asset/?id=1212900995"},
-        {Name = "Princess Fall", ID = "http://www.roblox.com/asset/?id=941000007"},
-        {Name = "Cowboy Fall", ID = "http://www.roblox.com/asset/?id=1014384571"},
-        {Name = "Patrol Fall", ID = "http://www.roblox.com/asset/?id=1148863382"},
-        {Name = "Edited Zombie Fall", ID = "http://www.roblox.com/asset/?id=616157476"},
-    }
-    local FallList = {}
-
-
-    for _, anim in ipairs(FallAnimations) do
-    table.insert(FallList, anim.Name)
-    end
-
-    local selectedFallAnimID
-
-    local dropdown = Animations:CreateDropdown("Fall Animations", FallList, function(CurrentFallOption)
-    local function StopAnim()
-        plr.Character.Animate.Disabled = false
-        local animtrack = plr.Character.Humanoid:GetPlayingAnimationTracks()
-        for _, track in pairs(animtrack) do
-            track:Stop()
-        end
-    end
-
-    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-            Message("Error!", "You're in R6", 5)
-    return end
-    StopAnim()
-    plr.Character.Animate.Disabled = true
-
-
-    for _, anim in ipairs(FallAnimations) do
-        if anim.Name == CurrentFallOption then
-            selectedFallAnimID = anim.ID
-            break
-        end
-    end
-
-
-    plr.Character.Animate.fall:FindFirstChildOfClass("Animation").AnimationId = selectedFallAnimID
-    plr.Character.Animate.Disabled = false
-
-    end)
-
-    Animations:CreateToggle("Auto Fall", function(AutoFall)
-        if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-        
-    return end
-    getgenv().AutoFalls = AutoFall
-
-
-    local function onCharacterAdded(character)
-        local humanoid = character:WaitForChild("Humanoid")
-
-
-        if humanoid then 
-            if R6reanimated then return end
-            if character.Animate.idle.Animation1.AnimationId ~= selectedFallAnimID then
-                character.Animate.fall:FindFirstChildOfClass("Animation").AnimationId = selectedFallAnimID
-            end
-        end
-    end
-
-
-    plr.CharacterAdded:Connect(onCharacterAdded)
-
-
-    if plr.Character then
-        onCharacterAdded(plr.Character)
-    end
-
-    while true do
-        wait(0)
-        if not getgenv().AutoFalls then
-            _G.AutoFalls = false
-            return
-        end
-
-        _G.AutoFalls = true
-        local AutoFallConnection = nil
-
-        AutoFallConnection = RunService.Stepped:Connect(function()
-            task.spawn(function()
-                if plr.Character then
-                    if selectedFallAnimID then
-            if R6reanimated then return end
-
-                        if not (plr.Character.Animate.idle.Animation1.AnimationId == selectedFallAnimID) then
-                            plr.Character.Animate.fall:FindFirstChildOfClass("Animation").AnimationId = selectedFallAnimID
-                        end
-                    end
-                end
-            end)
-        end)
-
-        repeat task.wait() until _G.AutoFalls == false
-        AutoFallConnection:Disconnect()
-    end
-    end)
-
-    Universal:CreateButton("Universal Emotes", function(state)
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/LmaoItsCrazyBro/qweytguqwebuqt/refs/heads/main/marked_esp_system_ai"))()
-    end)
-    Universal:CreateButton("Infinite Yield", function(state)
-        loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
-    end)
-    local letters = {
-    	["A"] = "Ａ〪", ["a"] = "ａ〪",
-    	["B"] = "Ｂ〪", ["b"] = "ｂ〪",
-    	["C"] = "Ｃ〪", ["c"] = "ｃ〪",
-    	["D"] = "Ｄ〪", ["d"] = "ｄ〪",
-    	["E"] = "Ｅ〪", ["e"] = "ｅ〪",
-    	["F"] = "Ｆ〪", ["f"] = "ｆ〪",
-    	["G"] = "Ｇ〪", ["g"] = "ｇ〪",
-    	["H"] = "Ｈ〪", ["h"] = "ｈ〪",
-    	["I"] = "Ｉ〪", ["i"] = "ｉ〪",
-    	["J"] = "Ｊ〪", ["j"] = "ｊ〪",
-    	["K"] = "Ｋ〪", ["k"] = "ｋ〪",
-    	["L"] = "Ｌ〪", ["l"] = "ｌ〪",
-    	["M"] = "Ｍ〪", ["m"] = "ｍ〪",
-    	["N"] = "Ｎ〪", ["n"] = "ｎ〪",
-    	["O"] = "Ｏ〪", ["o"] = "ｏ〪",
-    	["P"] = "Ｐ〪", ["p"] = "ｐ〪",
-    	["Q"] = "Ｑ〪", ["q"] = "ｑ〪",
-    	["R"] = "Ｒ〪", ["r"] = "ｒ〪",
-    	["S"] = "Ｓ〪", ["s"] = "ｓ〪",
-    	["T"] = "Ｔ〪", ["t"] = "ｔ〪",
-    	["U"] = "Ｕ〪", ["u"] = "ｕ〪",
-    	["V"] = "Ｖ〪", ["v"] = "ｖ〪",
-    	["W"] = "Ｗ〪", ["w"] = "ｗ〪",
-    	["X"] = "Ｘ〪", ["x"] = "ｘ〪",
-    	["Y"] = "Ｙ〪", ["y"] = "ｙ〪",
-    	["Z"] = "Ｚ〪", ["z"] = "ｚ〪"
-    }
-
-    local prefixCharacter = " "
-    local suffixCharacter = " "
-
-    local tcs = game:GetService("TextChatService")
-    local chats = game:GetService("Chat")
-    local chat = tcs.ChatInputBarConfiguration.TargetTextChannel
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-
-    local CurseLetters = {
-    	["A"] = "Ａ〪", ["a"] = "ａ〪", ["B"] = "Ｂ〪", ["b"] = "ｂ〪",
-    	["C"] = "Ｃ〪", ["c"] = "ｃ〪", ["D"] = "Ｄ〪", ["d"] = "ｄ〪",
-    	["E"] = "Ｅ〪", ["e"] = "ｅ〪", ["F"] = "Ｆ〪", ["f"] = "ｆ〪",
-    	["G"] = "Ｇ〪", ["g"] = "ｇ〪", ["H"] = "Ｈ〪", ["h"] = "ｈ〪",
-    	["I"] = "Ｉ〪", ["i"] = "ｉ〪", ["J"] = "Ｊ〪", ["j"] = "ｊ〪",
-    	["K"] = "Ｋ〪", ["k"] = "ｋ〪", ["L"] = "Ｌ〪", ["l"] = "ｌ〪",
-    	["M"] = "Ｍ〪", ["m"] = "ｍ〪", ["N"] = "Ｎ〪", ["n"] = "ｎ〪",
-    	["O"] = "Ｏ〪", ["o"] = "ｏ〪", ["P"] = "Ｐ〪", ["p"] = "ｐ〪",
-    	["Q"] = "Ｑ〪", ["q"] = "ｑ〪", ["R"] = "Ｒ〪", ["r"] = "ｒ〪",
-    	["S"] = "Ｓ〪", ["s"] = "ｓ〪", ["T"] = "Ｔ〪", ["t"] = "ｔ〪",
-    	["U"] = "Ｕ〪", ["u"] = "ｕ〪", ["V"] = "Ｖ〪", ["v"] = "ｖ〪",
-    	["W"] = "Ｗ〪", ["w"] = "ｗ〪", ["X"] = "Ｘ〪", ["x"] = "ｘ〪",
-    	["Y"] = "Ｙ〪", ["y"] = "ｙ〪", ["Z"] = "Ｚ〪", ["z"] = "ｚ〪"
-    }
-
-
-    local NormalStyledLetters = {
-    	["A"] = "Ａ", ["a"] = "ａ", ["B"] = "Ｂ", ["b"] = "ｂ",
-    	["C"] = "Ｃ", ["c"] = "ｃ", ["D"] = "Ｄ", ["d"] = "ｄ",
-    	["E"] = "Ｅ", ["e"] = "ｅ", ["F"] = "Ｆ", ["f"] = "ｆ",
-    	["G"] = "Ｇ", ["g"] = "ｇ", ["H"] = "Ｈ", ["h"] = "ｈ",
-    	["I"] = "Ｉ", ["i"] = "ｉ", ["J"] = "Ｊ", ["j"] = "ｊ",
-    	["K"] = "Ｋ", ["k"] = "ｋ", ["L"] = "Ｌ", ["l"] = "ｌ",
-    	["M"] = "Ｍ", ["m"] = "ｍ", ["N"] = "Ｎ", ["n"] = "ｎ",
-    	["O"] = "Ｏ", ["o"] = "ｏ", ["P"] = "Ｐ", ["p"] = "ｐ",
-    	["Q"] = "Ｑ", ["q"] = "ｑ", ["R"] = "Ｒ", ["r"] = "ｒ",
-    	["S"] = "Ｓ", ["s"] = "ｓ", ["T"] = "Ｔ", ["t"] = "ｔ",
-    	["U"] = "Ｕ", ["u"] = "ｕ", ["V"] = "Ｖ", ["v"] = "ｖ",
-    	["W"] = "Ｗ", ["w"] = "ｗ", ["X"] = "Ｘ", ["x"] = "ｘ",
-    	["Y"] = "Ｙ", ["y"] = "ｙ", ["Z"] = "Ｚ", ["z"] = "ｚ",
-    	[" "] = " "
-    }
-
-    local CurseWords = {
-    "2g1c",
-    "2 girls 1 cup",
-    "acrotomophilia",
-    "alabama hot pocket",
-    "alaskan pipeline",
-    "anal",
-    "anilingus",
-    "anus",
-    "apeshit",
-    "arsehole",
-    "ass",
-    "asshole",
-    "assmunch",
-    "auto erotic",
-    "autoerotic",
-    "babeland",
-    "baby batter",
-    "baby juice",
-    "ball gag",
-    "ball gravy",
-    "ball kicking",
-    "ball licking",
-    "ball sack",
-    "ball sucking",
-    "bangbros",
-    "bangbus",
-    "bareback",
-    "barely legal",
-    "barenaked",
-    "bastard",
-    "bastardo",
-    "bastinado",
-    "bbw",
-    "bdsm",
-    "beaner",
-    "beaners",
-    "beaver cleaver",
-    "beaver lips",
-    "beastiality",
-    "bestiality",
-    "big black",
-    "big breasts",
-    "big knockers",
-    "big tits",
-    "bimbos",
-    "birdlock",
-    "bitch",
-    "bitches",
-    "black cock",
-    "blonde action",
-    "blonde on blonde action",
-    "blowjob",
-    "blow job",
-    "blow your load",
-    "blue waffle",
-    "blumpkin",
-    "bollocks",
-    "bondage",
-    "boner",
-    "boob",
-    "boobs",
-    "booty",
-    "brown showers",
-    "brunette action",
-    "bukkake",
-    "bulldyke",
-    "bullet vibe",
-    "bullshit",
-    "bung hole",
-    "bunghole",
-    "busty",
-    "butt",
-    "buttcheeks",
-    "butthole",
-    "camel toe",
-    "camgirl",
-    "camslut",
-    "camwhore",
-    "carpet muncher",
-    "carpetmuncher",
-    "chocolate rosebuds",
-    "cialis",
-    "circlejerk",
-    "cleveland steamer",
-    "clit",
-    "clitoris",
-    "clover clamps",
-    "clusterfuck",
-    "cock",
-    "cocks",
-    "coprolagnia",
-    "coprophilia",
-    "cornhole",
-    "coon",
-    "coons",
-    "creampie",
-    "cum",
-    "cumming",
-    "cumshot",
-    "cumshots",
-    "cunnilingus",
-    "cunt",
-    "darkie",
-    "date rape",
-    "daterape",
-    "deep throat",
-    "deepthroat",
-    "dendrophilia",
-    "dick",
-    "dildo",
-    "dingleberry",
-    "dingleberries",
-    "dirty pillows",
-    "dirty sanchez",
-    "doggie style",
-    "doggiestyle",
-    "doggy style",
-    "doggystyle",
-    "dog style",
-    "dolcett",
-    "domination",
-    "dominatrix",
-    "dommes",
-    "donkey punch",
-    "double dong",
-    "double penetration",
-    "dp action",
-    "dry hump",
-    "dvda",
-    "eat my ass",
-    "ecchi",
-    "ejaculation",
-    "erotic",
-    "erotism",
-    "escort",
-    "eunuch",
-    "fag",
-    "faggot",
-    "fecal",
-    "felch",
-    "fellatio",
-    "feltch",
-    "female squirting",
-    "femdom",
-    "figging",
-    "fingerbang",
-    "fingering",
-    "fisting",
-    "foot fetish",
-    "footjob",
-    "frotting",
-    "fuck",
-    "fuck buttons",
-    "fuckin",
-    "fucking",
-    "fucktards",
-    "fudge packer",
-    "fudgepacker",
-    "futanari",
-    "gangbang",
-    "gang bang",
-    "gay sex",
-    "genitals",
-    "giant cock",
-    "girl on",
-    "girl on top",
-    "girls gone wild",
-    "goatcx",
-    "goatse",
-    "god damn",
-    "gokkun",
-    "golden shower",
-    "goodpoop",
-    "goo girl",
-    "goregasm",
-    "grope",
-    "group sex",
-    "g-spot",
-    "guro",
-    "hand job",
-    "handjob",
-    "hard core",
-    "hardcore",
-    "hentai",
-    "homoerotic",
-    "honkey",
-    "hooker",
-    "horny",
-    "hot carl",
-    "hot chick",
-    "how to kill",
-    "how to murder",
-    "huge fat",
-    "humping",
-    "incest",
-    "intercourse",
-    "jack off",
-    "jail bait",
-    "jailbait",
-    "jelly donut",
-    "jerk off",
-    "jigaboo",
-    "jiggaboo",
-    "jiggerboo",
-    "jizz",
-    "juggs",
-    "kike",
-    "kinbaku",
-    "kinkster",
-    "kinky",
-    "knobbing",
-    "bbc",
-    "leather restraint",
-    "leather straight jacket",
-    "lemon party",
-    "livesex",
-    "lolita",
-    "lovemaking",
-    "make me come",
-    "male squirting",
-    "masturbate",
-    "masturbating",
-    "masturbation",
-    "menage a trois",
-    "milf",
-    "missionary position",
-    "mong",
-    "motherfucker",
-    "mound of venus",
-    "mr hands",
-    "muff diver",
-    "muffdiving",
-    "nambla",
-    "nawashi",
-    "negro",
-    "neonazi",
-    "nigga",
-    "nigger",
-    "nig nog",
-    "nimphomania",
-    "nipple",
-    "nipples",
-    "nsfw",
-    "nsfw images",
-    "nude",
-    "nudity",
-    "nutten",
-    "nympho",
-    "nymphomania",
-    "octopussy",
-    "omorashi",
-    "one cup two girls",
-    "one guy one jar",
-    "orgasm",
-    "orgy",
-    "paedophile",
-    "paki",
-    "panties",
-    "panty",
-    "pedobear",
-    "pedophile",
-    "pegging",
-    "penis",
-    "phone sex",
-    "piece of shit",
-    "pikey",
-    "pissing",
-    "piss pig",
-    "pisspig",
-    "playboy",
-    "pleasure chest",
-    "pole smoker",
-    "ponyplay",
-    "poof",
-    "poon",
-    "poontang",
-    "punany",
-    "diddy",
-    "poop chute",
-    "poopchute",
-    "porn",
-    "porno",
-    "pornography",
-    "prince albert piercing",
-    "pthc",
-    "pubes",
-    "pussy",
-    "queaf",
-    "queef",
-    "quim",
-    "raghead",
-    "raging boner",
-    "rape",
-    "raping",
-    "rapist",
-    "rectum",
-    "reverse cowgirl",
-    "rimjob",
-    "rimming",
-    "rosy palm",
-    "rosy palm and her 5 sisters",
-    "rusty trombone",
-    "sadism",
-    "santorum",
-    "scat",
-    "schlong",
-    "scissoring",
-    "semen",
-    "sex",
-    "sexcam",
-    "sexo",
-    "sexy",
-    "sexual",
-    "sexually",
-    "sexuality",
-    "shaved beaver",
-    "shaved pussy",
-    "shemale",
-    "shibari",
-    "shit",
-    "shitblimp",
-    "shitty",
-    "shota",
-    "shrimping",
-    "skeet",
-    "slanteye",
-    "slut",
-    "s&m",
-    "smut",
-    "snatch",
-    "snowballing",
-    "sodomize",
-    "sodomy",
-    "spastic",
-    "spic",
-    "splooge",
-    "splooge moose",
-    "spooge",
-    "spread legs",
-    "spunk",
-    "strap on",
-    "strapon",
-    "strappado",
-    "strip club",
-    "style doggy",
-    "suck",
-    "sucks",
-    "suicide girls",
-    "sultry women",
-    "swastika",
-    "swinger",
-    "tainted love",
-    "taste my",
-    "tea bagging",
-    "threesome",
-    "throating",
-    "thumbzilla",
-    "tied up",
-    "tight white",
-    "tit",
-    "tits",
-    "titties",
-    "titty",
-    "tongue in a",
-    "topless",
-    "tosser",
-    "towelhead",
-    "tranny",
-    "tribadism",
-    "tub girl",
-    "tubgirl",
-    "tushy",
-    "twat",
-    "twink",
-    "twinkie",
-    "two girls one cup",
-    "undressing",
-    "upskirt",
-    "urethra play",
-    "urophilia",
-    "vagina",
-    "venus mound",
-    "viagra",
-    "vibrator",
-    "violet wand",
-    "vorarephilia",
-    "voyeur",
-    "voyeurweb",
-    "voyuer",
-    "vulva",
-    "wank",
-    "wetback",
-    "wet dream",
-    "white power",
-    "whore",
-    "worldsex",
-    "wrapping men",
-    "wrinkled starfish",
-    "xx",
-    "xxx",
-    "yaoi",
-    "yellow showers",
-    "yiffy",
-    "zoophilia",
-    }
-
-
-    local NormalizedCurseWords = {}
-    for _, word in ipairs(CurseWords) do
-    	NormalizedCurseWords[word:lower()] = true
-    end
-
-
-    function stylizeWord(word, isCurse)
-    	local map = isCurse and CurseLetters or NormalStyledLetters
-    	local output = {}
-    	for i = 1, #word do
-    		local c = word:sub(i, i)
-    		table.insert(output, map[c] or map[c:lower()] or c)
-    	end
-    	return table.concat(output)
-    end
-
-    function containsCurseWord(word)
-    	word = word:lower()
-    	for curse in pairs(NormalizedCurseWords) do
-    		if word:find(curse, 1, true) then
-    			return true
-    		end
-    	end
-    	return false
-    end
-
-    function filterMessage(message)
-    	local result = {}
-    	for word, space in message:gmatch("(%S+)(%s*)") do
-    		local base = word:match("^%W*(%w+)%W*$") 
-    		local isCurse = base and containsCurseWord(base)
-    		local prefix = word:match("^(%W*)") or ""
-    		local suffix = word:match("(%W*)$") or ""
-    		local cleanWord = base or word
-    		table.insert(result, prefix .. stylizeWord(cleanWord, isCurse) .. suffix .. space)
-    	end
-    	return table.concat(result)
-    end
-
-    function filter(message, _, prefix, suffix)
-    	return prefix .. filterMessage(message) .. suffix
-    end
-
-    function sendChat(msg)
-    	local converted = filter(msg, nil, prefixCharacter, suffixCharacter)
-    	local filteredMessage = chats:FilterStringForBroadcast(converted, game.Players.LocalPlayer)
-    	if filteredMessage ~= converted then
-        
-    	end
-
-    	if tcs.ChatVersion == Enum.ChatVersion.LegacyChatService then
-    		ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(converted, "All")
-    	else
-    		chat:SendAsync(converted)
-    	end
-    end
-
-    getgenv().ChatBypasserEnabled = false
-
-    Universal:CreateToggle("Enable Chat Bypasser", function(state)
-    	getgenv().ChatBypasserEnabled = state
-    end)
-
-    task.spawn(function()
-    	local CoreGui = game:GetService("CoreGui")
-    	local TextBox = CoreGui:WaitForChild("ExperienceChat")
-    		:WaitForChild("appLayout")
-    		:WaitForChild("chatInputBar")
-    		:WaitForChild("Background")
-    		:WaitForChild("Container")
-    		:WaitForChild("TextContainer")
-    		:WaitForChild("TextBoxContainer")
-    		:WaitForChild("TextBox")
-
-    	TextBox.FocusLost:Connect(function(enterPressed)
-    		if enterPressed and getgenv().ChatBypasserEnabled then
-    			local original = TextBox.Text
-    			local converted = filterMessage(original)
-    			TextBox.Text = converted
-    		end
-    	end)
-    end)
-
-    Universal:CreateBox("Swastika in chat", "string", function(boxs)
-        local text = ""
-        sendChat()
-    end)
-
-    Universal:CreateButton("clear logs", function(OPENS) 
-        clearlogsf()
-    end)
-
-        Universal:CreateButton("Join Voice Chat", function()
-            game:GetService("VoiceChatService"):joinVoice()
-        end)
-        Universal:CreateButton("Leave Voice Chat", function()
-            local VoiceChat_Internal = cloneref and cloneref(game:GetService("VoiceChatInternal")) or game:GetService("VoiceChatInternal")
-            VoiceChat_Internal:Leave()
-        end)
-        Universal:CreateButton("Chat bypasser (set ur language to  Қазақ Тілі)", function()
-        end)
-        local AnimationLogger
-        local loggedAnimations = {}
-        local excludedAnimations = {
-            "WalkAnim",
-            "RunAnim",
-            "Animation1",
-            "JumpAnim",
-            "FallAnim",
-            "Animation2"
-        }
-
-        local allowDefaultAnims = false
-
-        
-        local function getExcludedAnimationIds()
-            local excludedIds = {}
-            local animate = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Animate")
-            if not animate then return excludedIds end
-        
-            local states = {"idle", "walk", "run", "jump", "fall", "climb", "swim", "sit"}
-            for _, state in ipairs(states) do
-                local stateFolder = animate:FindFirstChild(state)
-                if stateFolder then
-                    for _, anim in ipairs(stateFolder:GetChildren()) do
-                        if anim:IsA("Animation") and anim.AnimationId then
-                            local cleanId = anim.AnimationId:gsub("https?://www%.roblox%.com/asset/%?id=", "")
-                            excludedIds[cleanId] = true
-                        end
-                    end
-                end
-            end
-            return excludedIds
-        end
-
-        local excludedAnimationIds = getExcludedAnimationIds()
-
-        
-        local function getLoggedAnimationList()
-            local list = {}
-            for _, animationName in pairs(loggedAnimations) do
-                table.insert(list, animationName)
-            end
-            return list
-        end
-
-        
-        local function logAnimation(animationName, animationId)
-            local cleanAnimationId = animationId:gsub("https?://www%.roblox%.com/asset/%?id=", "")
-
-            
-            if not allowDefaultAnims and excludedAnimationIds[cleanAnimationId] then
-                return
-            end
-        
-            if not loggedAnimations[animationId] then
-                loggedAnimations[animationId] = animationName
-                print(string.format("Detected and logged animation: %s (ID: %s)", animationName, cleanAnimationId))
-
-                if AnimationLogger then
-                    AnimationLogger:Refresh(getLoggedAnimationList())
-                end
-            end
-        end
-
-        local MarketplaceService = game:GetService("MarketplaceService")
-
-        
-        local function onAnimationPlayed(animationTrack)
-            local animation = animationTrack.Animation
-            if animation then
-                local animationId = animation.AnimationId
-                local assetId = tonumber(string.match(animationId, "%d+"))
-                if assetId then
-                    local success, productInfo = pcall(function()
-                        return MarketplaceService:GetProductInfo(assetId)
-                    end)
-                    if success and productInfo then
-                        local animationName = productInfo.Name or "Unknown Animation"
-                        logAnimation(animationName, animationId)
-                    end
-                end
-            end
-        end
-
-        
-        local function trackPlayerAnimations()
-            local player = game.Players.LocalPlayer
-            local function setup(character)
-                local humanoid = character:WaitForChild("Humanoid")
-                humanoid.AnimationPlayed:Connect(onAnimationPlayed)
-            end
-        
-            if player.Character then
-                setup(player.Character)
-            end
-            player.CharacterAdded:Connect(setup)
-        end
-
-        trackPlayerAnimations()
-
-        
-
-        Universal:CreateToggle("Allow Default Animations", function(state)
-            allowDefaultAnims = state
-        end)
-
-        Universal:CreateButton("Clear All Logged Animations", function()
-            loggedAnimations = {}
-            if AnimationLogger then
-                AnimationLogger:Refresh({})
-            end
-        end)
-
-        Universal:CreateButton("Copy All Logged Animations", function()
-            local allEntries = {}
-            for animationId, animationName in pairs(loggedAnimations) do
-                
-                local cleanAnimationId = animationId
-                    :gsub("https?://www%.roblox%.com/asset/%?id=", "")
-                    :gsub("rbxassetid://", "") 
-                table.insert(allEntries, string.format('["%s"] = %s,', animationName, cleanAnimationId))
-            end
-            setclipboard(table.concat(allEntries, "\n"))
-        end)
-
-        AnimationLogger = Universal:CreateDropdown2("Animation Logger", getLoggedAnimationList(), function(selectedAnimation)
-            
-            for animationId, animationName in pairs(loggedAnimations) do
-                if animationName == selectedAnimation then
-                    local cleanAnimationId = animationId
-                        :gsub("https?://www%.roblox%.com/asset/%?id=", "")
-                        :gsub("rbxassetid://", "") 
-                    setclipboard(cleanAnimationId)
-                    break
-                end
-            end
-        end)
-
-
-        
-        if AnimationLogger then
-            AnimationLogger:Refresh(getLoggedAnimationList())
-        end
-end
