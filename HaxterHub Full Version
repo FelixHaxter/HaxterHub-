@@ -480,7 +480,7 @@
     	local circle = getCircle(row, col)
     	if detector and circle and circle.Transparency == 1 then
     		fireclickdetector(detector)
-    		print("Clicked:", row, col)
+    		
 
         
     		local timeout = 3
@@ -1399,7 +1399,7 @@
                 local con0, con1 = nil, nil
                 con0 = stepped:Connect(function()
                     if not (Part0 and Part1) or not plr.Character or not plr.Character:FindFirstChild("UpperTorso") then 
-                        print("Disconnected 1")
+                        
                         con0:Disconnect() 
                         con1:Disconnect() 
                         return 
@@ -2774,7 +2774,7 @@ local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOpt
                 EmotesTable[matchedName] = value
                 break
             end
-            print("Loaded emote:", matchedName)
+            
         else
             Message("Error", "Failed to load emote: " .. matchedName, 3)
             return
@@ -10441,10 +10441,10 @@ end
 
     function loadAdmins()
         if not isfile(adminFilePath) then
-            print("Admin file not found. Creating a new one.")
+            
 
             writefile(adminFilePath, "")
-            print("Admin file created successfully.")
+            
         end
 
         local fileContent = readfile(adminFilePath)
@@ -10454,7 +10454,7 @@ end
                 Admins[line:lower()] = true 
             end
         else
-            print("Could not read admin file.")
+            
         end
     end
 
@@ -10490,12 +10490,12 @@ end
             if targetPlayer then
                 SkidFlingKill(targetPlayer)  
             else
-                print("Target player not found.")
+                
             end
         elseif cmd == "cmds" then 
-            print("Available commands: reset, fling, cmds")
+            
         else
-            print("Unknown command: " .. cmd)  
+            
         end
     end
 
@@ -10524,7 +10524,7 @@ end
                 if isAdmin(player.Name) then
                     handleCommand(player, cmd, targetName)  
                 else
-                    print("You do not have permission to use this command.")
+                    
                 end
             end
         end)
