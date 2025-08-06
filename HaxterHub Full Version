@@ -2734,6 +2734,7 @@ Reanimate:CreateSlider("Animation Speed Adjuster", 0, 100, 50, function(R157Chan
 end)
 
 local reanimater15 = Reanimate:CreateDropdown("Built In Animations", dropdownOptions, function(selected)
+    if not R15reanimated then return end
     if selected == nil or selected == "nil" then
         stopCurrentAnimation()
         return
