@@ -1959,12 +1959,18 @@ end
 		
 			return object
 		end
-local keybindToggleStates = {}
 
-function vermlibbb:CreateDropdown(name, list, callback)
+	keybindToggleStates = {}
+	
+	-- Global dropdown synchronization system
+	local dropdownSyncGroups = {}
+	local dropdownInstances = {}
+
+function vermlibbb:CreateDropdown(name, list, callback, LinkedDropdowns)
     name = name or "Dropdown"
     list = list or {}
     callback = callback or function() end
+    LinkedDropdowns = LinkedDropdowns or {}
 
     local HttpService = game:GetService("HttpService")
     local UIS = game:GetService("UserInputService")
@@ -2128,6 +2134,41 @@ function vermlibbb:CreateDropdown(name, list, callback)
     UIGridLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
     Tab.CanvasSize = UDim2.new(0, 0, 0, Tab.CanvasSize.Y.Offset + 51)
 
+    -- Create dropdown instance for synchronization
+    local dropdownInstance = {
+        name = name,
+        DropdownOption = DropdownOption,
+        selectedButton = nil,
+        LinkedDropdowns = LinkedDropdowns,
+        resetToNone = function()
+            if dropdownInstance.selectedButton then
+                dropdownInstance.selectedButton.BackgroundColor3 = defaultColor
+                dropdownInstance.selectedButton = nil
+            end
+            DropdownOption.Text = name .. ": (none)"
+            callback(nil)
+        end
+    }
+    
+    -- Register this dropdown instance
+    dropdownInstances[name] = dropdownInstance
+    
+    -- Create sync groups for linked dropdowns
+    if #LinkedDropdowns > 0 then
+        local syncGroupKey = table.concat(LinkedDropdowns, "_") .. "_" .. name
+        if not dropdownSyncGroups[syncGroupKey] then
+            dropdownSyncGroups[syncGroupKey] = {}
+        end
+        table.insert(dropdownSyncGroups[syncGroupKey], name)
+        
+        -- Also add linked dropdowns to the same group
+        for _, linkedName in ipairs(LinkedDropdowns) do
+            if not table.find(dropdownSyncGroups[syncGroupKey], linkedName) then
+                table.insert(dropdownSyncGroups[syncGroupKey], linkedName)
+            end
+        end
+    end
+
     PrevButton.Text = "<"
     local UICornerPrev = Instance.new("UICorner", PrevButton)
     PrevButton.TextSize = 20
@@ -2145,6 +2186,23 @@ function vermlibbb:CreateDropdown(name, list, callback)
 
     PrevButton.Position = UDim2.new(0, 30, 0, 15)
     NextButton.Position = UDim2.new(0, 430, 0, 15)
+    
+    -- Synchronization function
+    local function syncLinkedDropdowns(currentDropdownName)
+        -- Find which sync group this dropdown belongs to
+        for syncGroupKey, dropdownNames in pairs(dropdownSyncGroups) do
+            if table.find(dropdownNames, currentDropdownName) then
+                -- Reset all other dropdowns in this sync group
+                for _, dropdownName in ipairs(dropdownNames) do
+                    if dropdownName ~= currentDropdownName and dropdownInstances[dropdownName] then
+                        dropdownInstances[dropdownName].resetToNone()
+                    end
+                end
+                break
+            end
+        end
+    end
+    
 	local buildOption
 
 
@@ -2325,38 +2383,39 @@ function vermlibbb:CreateDropdown(name, list, callback)
 
 		end)
 
-Option.MouseButton1Click:Connect(function()
-    if selectedButton == Option then
-        
-        Option.BackgroundColor3 = defaultColor
-        selectedButton = nil
-        DropdownOption.Text = name .. ": (none)"
-        callback(nil)
-
-        
-        for key in pairs(keybindToggleStates) do
-            keybindToggleStates[key] = false
-        end
-    else
-        
-        DropdownOption.Text = name .. ": " .. opt.Label
-        callback(opt.Value)
-
-        
-        if selectedButton then
-            selectedButton.BackgroundColor3 = defaultColor
-        end
-
-        
-        for key in pairs(keybindToggleStates) do
-            keybindToggleStates[key] = false
-        end
-
-        
-        Option.BackgroundColor3 = highlightColor
-        selectedButton = Option
-    end
-end)
+	Option.MouseButton1Click:Connect(function()
+	    if selectedButton == Option then
+	        -- Untoggle
+	        Option.BackgroundColor3 = defaultColor
+	        selectedButton = nil
+	        dropdownInstance.selectedButton = nil
+	        DropdownOption.Text = name .. ": (none)"
+	        callback(nil)
+		
+	        for key in pairs(keybindToggleStates) do
+	            keybindToggleStates[key] = false
+	        end
+	    else
+	        -- Sync with linked dropdowns first
+	        syncLinkedDropdowns(name)
+	        
+	        -- Toggle new option on
+	        DropdownOption.Text = name .. ": " .. opt.Label
+	        callback(opt.Value)
+		
+	        if selectedButton then
+	            selectedButton.BackgroundColor3 = defaultColor
+	        end
+		
+	        for key in pairs(keybindToggleStates) do
+	            keybindToggleStates[key] = false
+	        end
+		
+			Option.BackgroundColor3 = highlightColor
+	        selectedButton = Option
+	        dropdownInstance.selectedButton = Option
+	    end
+	end)
 
     end
 
@@ -2405,61 +2464,73 @@ UIS.InputBegan:Connect(function(input, gpe)
     if gpe or input.UserInputType ~= Enum.UserInputType.Keyboard then return end
     local pressedKey = input.KeyCode.Name
 
+    -- Find the label this key is bound to (only for this dropdown!)
+    local matchedLabel = nil
     for label, key in pairs(keybinds) do
         if key == pressedKey then
-            
-            keybindToggleStates[label] = not keybindToggleStates[label]
-
-            
-            local optionButton = nil
-            for _, frame in ipairs(DropdownContainer:GetChildren()) do
-                if frame:IsA("Frame") then
-                    local btn = frame:FindFirstChild(label)
-                    if btn and btn:IsA("TextButton") then
-                        optionButton = btn
-                        break
-                    end
+            -- Make sure it's an option in *this* dropdown
+            for _, opt in ipairs(options) do
+                if opt.Label == label then
+                    matchedLabel = label
+                    break
                 end
             end
-
-if keybindToggleStates[label] then
-    
-    if selectedButton and selectedButton ~= optionButton then
-        selectedButton.BackgroundColor3 = defaultColor
-    end
-
-    
-    DropdownOption.Text = name .. ": " .. label
-    local optionValue = nil
-    for _, opt in ipairs(options) do
-        if opt.Label == label then
-            optionValue = opt.Value
-            break
         end
     end
-    callback(optionValue)
 
-    
-    if optionButton then
-        optionButton.BackgroundColor3 = highlightColor
-        selectedButton = optionButton
+    if not matchedLabel then return end -- No relevant match in this dropdown
+
+    local wasToggled = keybindToggleStates[matchedLabel] or false
+
+    -- Reset all toggle states for this dropdown
+    for _, opt in ipairs(options) do
+        keybindToggleStates[opt.Label] = false
     end
 
-            else
-                
-                DropdownOption.Text = name .. ": (none)"
-                callback(nil)
-
-                
-                if optionButton then
-                    optionButton.BackgroundColor3 = defaultColor
-                    if selectedButton == optionButton then
-                        selectedButton = nil
-                    end
-                end
+    -- Reference to the UI button in this dropdown
+    local optionButton = nil
+    for _, frame in ipairs(DropdownContainer:GetChildren()) do
+        if frame:IsA("Frame") then
+            local btn = frame:FindFirstChild(matchedLabel)
+            if btn and btn:IsA("TextButton") then
+                optionButton = btn
+                break
             end
+        end
+    end
 
-            break
+    if not wasToggled then
+        -- Toggle ON this option
+        keybindToggleStates[matchedLabel] = true
+
+        -- Remove previous highlight
+        if selectedButton and selectedButton ~= optionButton then
+            selectedButton.BackgroundColor3 = defaultColor
+        end
+
+        -- Select new
+        DropdownOption.Text = name .. ": " .. matchedLabel
+        for _, opt in ipairs(options) do
+            if opt.Label == matchedLabel then
+                callback(opt.Value)
+                break
+            end
+        end
+
+        if optionButton then
+            optionButton.BackgroundColor3 = highlightColor
+            selectedButton = optionButton
+        end
+    else
+        -- Toggle OFF
+        DropdownOption.Text = name .. ": (none)"
+        callback(nil)
+
+        if optionButton then
+            optionButton.BackgroundColor3 = defaultColor
+            if selectedButton == optionButton then
+                selectedButton = nil
+            end
         end
     end
 end)
