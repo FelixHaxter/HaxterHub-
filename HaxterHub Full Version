@@ -1959,6 +1959,10 @@ game:GetService("ReplicatedStorage"):WaitForChild("Ragdoll"):FireServer(unpack(a
     local previousHeight = 0
     local previousHipHeightR15 = 0
 
+    Reanimate:CreateButton("Set as defult hipheight", function(state)
+        ActualHipHeight = humanoid.HipHeight
+    end)
+
     Reanimate:CreateSlider("Height", 0, 250, 0, function(CharacterHeight)
     if not R15reanimated then
         return
