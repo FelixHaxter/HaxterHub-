@@ -84,30 +84,81 @@ function vermLib:CreateWindow(name)
 	UIScale.Scale = 0.8
 	UIScale.Parent = Window.Parent
 
-	local ScaleHandlerThing = Instance.new("LocalScript")
-	ScaleHandlerThing.Name = "ScaleHandlerThing"
-	ScaleHandlerThing.Source = [[
-	local v_u_1 = game:GetService("UserInputService")
-	local v_u_2 = script.Parent.Parent
-	v_u_2:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-	    local v3 = v_u_2.AbsoluteSize
-	    if v_u_1.TouchEnabled then
-	        script.Parent.Scale = v3.Y / 550
+	local UserInputService = game:GetService("UserInputService")
+	local player = game.Players.LocalPlayer
+	local camera = workspace.CurrentCamera
+	
+	local camera = workspace.CurrentCamera
+	local autoScale = UIScale
+	local gui = Window 
+	
+	local function calcScale(y)
+	    if y <= 800 then
+	        return 0.45 + (y / 800) * (0.8 - 0.45)
+	    elseif y <= 1080 then
+	        return 0.8 + ((y - 800) / (1080 - 800)) * (1 - 0.8)
+	    elseif y <= 1280 then
+	        return 1 + ((y - 1080) / (1280 - 1080)) * (1.5 - 1)
 	    else
-	        script.Parent.Scale = v3.Y / 850
+	        return 1.5
+	    end
+	end
+
+	
+	local function updateScale()
+	    autoScale.Scale = calcScale(camera.ViewportSize.Y)
+	end
+	camera:GetPropertyChangedSignal("ViewportSize"):Connect(updateScale)
+	updateScale()
+
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	local isHoveringSlider = false
+	
+	local function getScale()
+	    return autoScale.Scale
+	end
+	
+	local function update(input)
+	    if not isHoveringSlider then  
+	        local scale = getScale()
+	        local delta = (input.Position - dragStart) / scale
+	        gui.Position = UDim2.new(
+	            startPos.X.Scale,
+	            startPos.X.Offset + delta.X,
+	            startPos.Y.Scale,
+	            startPos.Y.Offset + delta.Y
+	        )
+	    end
+	end
+	
+	gui.InputBegan:Connect(function(input)
+	    if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not isHoveringSlider then
+	        dragging = true
+	        dragStart = input.Position
+	        startPos = gui.Position
+		
+	        input.Changed:Connect(function()
+	            if input.UserInputState == Enum.UserInputState.End then
+	                dragging = false
+	            end
+	        end)
 	    end
 	end)
-
-	local v4 = v_u_2.AbsoluteSize
-	if v_u_1.TouchEnabled then
-	    script.Parent.Scale = v4.Y / 550
-	else
-	    script.Parent.Scale = v4.Y / 850
-	end
-	]]
-
-ScaleHandlerThing.Parent = UIScale
-
+	
+	gui.InputChanged:Connect(function(input)
+	    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	        dragInput = input
+	    end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+	    if input == dragInput and dragging then
+	        update(input)
+	    end
+	end)
 
     OpenClose.MouseButton1Click:Connect(function()
         Window.Visible = not Window.Visible
@@ -1203,47 +1254,7 @@ ScaleHandlerThing.Parent = UIScale
 
 	
 
-	local UserInputService = game:GetService("UserInputService")
 
-local gui = Window
-local dragging
-local dragInput
-local dragStart
-local startPos
-local isHoveringSlider = false  
-
-local function update(input)
-    if not isHoveringSlider then  
-        local delta = input.Position - dragStart
-        gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-end
-
-gui.InputBegan:Connect(function(input)
-    if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and not isHoveringSlider then
-        dragging = true
-        dragStart = input.Position
-        startPos = gui.Position
-
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
-
-	gui.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			dragInput = input
-		end
-	end)
-
-	UserInputService.InputChanged:Connect(function(input)
-		if input == dragInput and dragging then
-			update(input)
-		end
-	end)
 
 	local vermlibb = {}
 
@@ -1994,7 +2005,6 @@ end
 
 	keybindToggleStates = {}
 	
-	-- Global dropdown synchronization system
 	local dropdownSyncGroups = {}
 	local dropdownInstances = {}
 
@@ -2166,8 +2176,7 @@ function vermlibbb:CreateDropdown(name, list, callback, LinkedDropdowns)
     UIGridLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
     Tab.CanvasSize = UDim2.new(0, 0, 0, Tab.CanvasSize.Y.Offset + 51)
 
-    -- Create dropdown instance for synchronization
-    local dropdownInstance = {
+	local dropdownInstance = {
         name = name,
         DropdownOption = DropdownOption,
         selectedButton = nil,
@@ -2182,18 +2191,15 @@ function vermlibbb:CreateDropdown(name, list, callback, LinkedDropdowns)
         end
     }
     
-    -- Register this dropdown instance
     dropdownInstances[name] = dropdownInstance
     
-    -- Create sync groups for linked dropdowns
-    if #LinkedDropdowns > 0 then
+	if #LinkedDropdowns > 0 then
         local syncGroupKey = table.concat(LinkedDropdowns, "_") .. "_" .. name
         if not dropdownSyncGroups[syncGroupKey] then
             dropdownSyncGroups[syncGroupKey] = {}
         end
         table.insert(dropdownSyncGroups[syncGroupKey], name)
         
-        -- Also add linked dropdowns to the same group
         for _, linkedName in ipairs(LinkedDropdowns) do
             if not table.find(dropdownSyncGroups[syncGroupKey], linkedName) then
                 table.insert(dropdownSyncGroups[syncGroupKey], linkedName)
@@ -2219,12 +2225,9 @@ function vermlibbb:CreateDropdown(name, list, callback, LinkedDropdowns)
     PrevButton.Position = UDim2.new(0, 30, 0, 15)
     NextButton.Position = UDim2.new(0, 430, 0, 15)
     
-    -- Synchronization function
     local function syncLinkedDropdowns(currentDropdownName)
-        -- Find which sync group this dropdown belongs to
         for syncGroupKey, dropdownNames in pairs(dropdownSyncGroups) do
             if table.find(dropdownNames, currentDropdownName) then
-                -- Reset all other dropdowns in this sync group
                 for _, dropdownName in ipairs(dropdownNames) do
                     if dropdownName ~= currentDropdownName and dropdownInstances[dropdownName] then
                         dropdownInstances[dropdownName].resetToNone()
@@ -2417,7 +2420,6 @@ function vermlibbb:CreateDropdown(name, list, callback, LinkedDropdowns)
 
 	Option.MouseButton1Click:Connect(function()
 	    if selectedButton == Option then
-	        -- Untoggle
 	        Option.BackgroundColor3 = defaultColor
 	        selectedButton = nil
 	        dropdownInstance.selectedButton = nil
@@ -2428,10 +2430,8 @@ function vermlibbb:CreateDropdown(name, list, callback, LinkedDropdowns)
 	            keybindToggleStates[key] = false
 	        end
 	    else
-	        -- Sync with linked dropdowns first
 	        syncLinkedDropdowns(name)
 	        
-	        -- Toggle new option on
 	        DropdownOption.Text = name .. ": " .. opt.Label
 	        callback(opt.Value)
 		
@@ -2496,12 +2496,10 @@ UIS.InputBegan:Connect(function(input, gpe)
     if gpe or input.UserInputType ~= Enum.UserInputType.Keyboard then return end
     local pressedKey = input.KeyCode.Name
 
-    -- Find the label this key is bound to (only for this dropdown!)
     local matchedLabel = nil
     for label, key in pairs(keybinds) do
         if key == pressedKey then
-            -- Make sure it's an option in *this* dropdown
-            for _, opt in ipairs(options) do
+			for _, opt in ipairs(options) do
                 if opt.Label == label then
                     matchedLabel = label
                     break
@@ -2510,16 +2508,14 @@ UIS.InputBegan:Connect(function(input, gpe)
         end
     end
 
-    if not matchedLabel then return end -- No relevant match in this dropdown
+    if not matchedLabel then return end
 
     local wasToggled = keybindToggleStates[matchedLabel] or false
 
-    -- Reset all toggle states for this dropdown
     for _, opt in ipairs(options) do
         keybindToggleStates[opt.Label] = false
     end
 
-    -- Reference to the UI button in this dropdown
     local optionButton = nil
     for _, frame in ipairs(DropdownContainer:GetChildren()) do
         if frame:IsA("Frame") then
@@ -2532,15 +2528,12 @@ UIS.InputBegan:Connect(function(input, gpe)
     end
 
     if not wasToggled then
-        -- Toggle ON this option
         keybindToggleStates[matchedLabel] = true
 
-        -- Remove previous highlight
         if selectedButton and selectedButton ~= optionButton then
             selectedButton.BackgroundColor3 = defaultColor
         end
 
-        -- Select new
         DropdownOption.Text = name .. ": " .. matchedLabel
         for _, opt in ipairs(options) do
             if opt.Label == matchedLabel then
@@ -2554,7 +2547,6 @@ UIS.InputBegan:Connect(function(input, gpe)
             selectedButton = optionButton
         end
     else
-        -- Toggle OFF
         DropdownOption.Text = name .. ": (none)"
         callback(nil)
 
