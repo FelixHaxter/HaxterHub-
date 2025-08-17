@@ -15,7 +15,7 @@ if game:GetService("CoreGui"):FindFirstChild("HaxterHub V6") then
 end
 if game.PlaceId == 18249583849 then
 -- Balloon Pop: Find Your Match 🔊: HaxterHub Script
-    success, vermLib = pcall(loadstring(game:HttpGet("https://gist.githubusercontent.com/FelixHaxter/8fba11ea93aceaa097f6aec142cb4076/raw/f3a746f6a766192429d0a3b6bc7e45e97232bd51/underdev%2520UI")))
+    success, vermLib = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/FelixHaxter/HaxterHub-/refs/heads/main/HaxterHub%20UI%20Library")))
 if not success then
     warn("Failed to load vermLib: " .. tostring(vermLib))
     return
